@@ -1,14 +1,10 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
 from django import template
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-
+import requests
+from django.shortcuts import render
 
 
 @login_required(login_url="/login/")
@@ -56,8 +52,22 @@ def alumnos(request):
     segment = 'alumnos.html'
     context = {'segment': segment}
 
-    html_template = loader.get_template('home/alumnos.html')
-    return HttpResponse(html_template.render(context, request))
+    # Hacer una solicitud GET al endpoint del JSON
+    response = requests.get('https://randomuser.me/api/?results=2')
+    if response.status_code == 200:
+        data = response.json()
+        alumnos = []
+        for result in data['results']:
+            alumno = {
+                'nombre': result['name']['first'] + ' ' + result['name']['last'],
+                'imagen': result['picture']['medium']
+            }
+            alumnos.append(alumno)
+        context['alumnos'] = alumnos
+        print(alumnos)  # Comprobación en consola
+    
+
+    return render(request, 'home/alumnos.html', context)
 
 def notas(request):
     segment = 'notas.html'
@@ -71,4 +81,11 @@ def testvocacional(request):
     context = {'segment': segment}
 
     html_template = loader.get_template('home/testvocacional.html')
+    return HttpResponse(html_template.render(context, request))
+
+def cuestionario(request):
+    segment = 'cuestionario.html'
+    context = {'segment': segment}
+
+    html_template = loader.get_template('home/cuestionario.html')
     return HttpResponse(html_template.render(context, request))
