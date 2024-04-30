@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-import requests
 from django.shortcuts import render
 
 
@@ -52,19 +51,7 @@ def alumnos(request):
     segment = 'alumnos.html'
     context = {'segment': segment}
 
-    # Hacer una solicitud GET al endpoint del JSON
-    response = requests.get('https://randomuser.me/api/?results=2')
-    if response.status_code == 200:
-        data = response.json()
-        alumnos = []
-        for result in data['results']:
-            alumno = {
-                'nombre': result['name']['first'] + ' ' + result['name']['last'],
-                'imagen': result['picture']['medium']
-            }
-            alumnos.append(alumno)
-        context['alumnos'] = alumnos
-        print(alumnos)  # Comprobación en consola
+
     
 
     return render(request, 'home/alumnos.html', context)
