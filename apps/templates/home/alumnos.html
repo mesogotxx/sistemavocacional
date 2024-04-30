@@ -1,16 +1,11 @@
 {% extends "layouts/base.html" %}
-
 {% block title %} Page User {% endblock %} 
-
-<!-- agregar css -->
-{% block stylesheets %}{% endblock stylesheets %}
-
 {% block content %}
-
-
-
-
+<h1>Alumnos</h1>
+{% for alumno in alumnos %}
+<div>
+    <h2>{{ alumno.nombre }}</h2>
+    <img src="{{ alumno.imagen }}" alt="{{ alumno.nombre }}">
+</div>
+{% endfor %}
 {% endblock content %}
-
-<!-- agregar js -->
-{% block javascripts %}{% endblock javascripts %}
