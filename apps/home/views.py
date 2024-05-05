@@ -4,6 +4,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from django.shortcuts import render
+from .models import Alumno
+from apps.home.models import Alumno
+
 
 
 @login_required(login_url="/login/")
@@ -43,13 +46,9 @@ def perfil(request):
 
 @login_required(login_url="/login/")
 def alumnos(request):
-    segment = 'alumnos.html'
-    context = {'segment': segment}
-
-
-    
-
-    return render(request, 'home/alumnos.html', context)
+    alumnos = Alumno.objects.all()
+    print("Alumnos:", alumnos)  # Aquí colocamos el print dentro de la función
+    return render(request, 'home/alumnos.html', {"alumnos":alumnos})
 
 @login_required(login_url="/login/")
 def notas(request):
