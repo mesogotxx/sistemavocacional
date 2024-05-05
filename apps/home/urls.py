@@ -5,6 +5,7 @@ urlpatterns = [
 
     # The home page
     path('', views.perfil, name='home'),
+    path('seccion/', views.seccion, name='seccion'),
     path('alumnos/', views.alumnos, name='alumnos'),
     path('notas/', views.notas, name='notas'),
     path('testvocacional/', views.testvocacional, name='testvocacional'),

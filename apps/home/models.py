@@ -2,19 +2,28 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class AñoCurso(models.Model):
+    id_añocurso = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=45)
+    fecha = models.DateField()
+
+    def __str__(self):
+        return self.nombre
+
 class Alumno(models.Model):
     id_alumno = models.AutoField(primary_key=True)
     p_nombre = models.CharField(max_length=45, verbose_name='Primer nombre')
     s_nombre = models.CharField(max_length=45, blank=True, null=True, verbose_name='Segundo nombre')
     apellido_pat = models.CharField(max_length=45, verbose_name='Apellido paterno')
-    apellido_mat = models.CharField(max_length=45, verbose_name='apellido materno')
+    apellido_mat = models.CharField(max_length=45, verbose_name='Apellido materno')
     fecha_nac = models.DateField()
     fecha_ingreso = models.DateField()
     direccion = models.CharField(max_length=45, blank=True, null=True, verbose_name='Dirección')
     numero_apoderado = models.IntegerField(blank=True, null=True, verbose_name='Celular apoderado')
+    año_cursado = models.ForeignKey(AñoCurso, on_delete=models.CASCADE, verbose_name='Año cursado', related_name='alumnos')
     
     def __str__(self):
-        return f"{self.p_nombre} {self.apellido_pat} {self.apellido_mat}"
+        return f"{self.id_alumno} {self.p_nombre} {self.apellido_pat} {self.apellido_mat} {self.direccion} {self.numero_apoderado}"
     
     
 class Profesor(models.Model):

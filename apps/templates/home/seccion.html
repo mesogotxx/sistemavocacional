@@ -1,0 +1,56 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page User {% endblock %} 
+
+<!-- agregar css -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header card-header-primary">
+        <h3 class="card-title">Lista de secciones</h3>
+        <p class="card-category">Año 
+          <a>de la sección</a>
+        </p>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="card-title">Seleccione el año para ver secciones</h4>
+                {% for nombre_grupo, años_grupo in grupos.items %}
+                    <div class="alert alert-info" onclick="mostrarGrupo('{{ nombre_grupo }}', {{ años_grupo|safe }})">
+                        <h5>{{ nombre_grupo }}</h5>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                <h4 class="card-title">Secciones</h4>
+                <div id="alumnos-grupo">
+                    <!-- Aquí se mostrarán los alumnos del grupo seleccionado -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- agregar js -->
+{% block javascripts %}
+<script>
+    function mostrarGrupo(nombreGrupo, añosGrupo) {
+        var seccionesHtml = '';
+        añosGrupo.forEach(function (seccion) {
+            seccionesHtml += '<div class="alert alert-success" onclick="mostrarSeccion(\'' + seccion + '\')">' + seccion + '</div>';
+        });
+        document.getElementById('alumnos-grupo').innerHTML = seccionesHtml;
+    }
+    
+    function mostrarSeccion(seccion) {
+        window.location.href = "{% url 'alumnos' %}?seccion=" + encodeURIComponent(seccion);
+    }
+</script>
+
+{% endblock javascripts %}
