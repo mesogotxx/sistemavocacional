@@ -7,7 +7,22 @@
 
 {% block content %}
 
-<h1>123</h1>
+<h1>Test Vocacional</h1>
+<form action="{% url 'notas' %}" method="post">
+    {% csrf_token %}
+    {% for pregunta in preguntas %}
+    <p>{{ pregunta.pregunta }}</p>
+    {% for respuesta in pregunta.respuestas %}
+    <input type="radio" name="{{ pregunta.pregunta }}" value="{{ respuesta.opcion }}"> {{ respuesta.texto }}<br>
+    {% endfor %}
+    <!-- Añadir una línea horizontal para separar las preguntas -->
+    <hr>
+    {% endfor %}
+    <p><input type="submit" value="Enviar"></p>
+</form>
+{% if resultado %}
+<p>{{ resultado }}</p>
+{% endif %}
 
 
 {% endblock content %}

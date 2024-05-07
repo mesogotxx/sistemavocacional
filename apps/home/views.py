@@ -7,6 +7,14 @@ from django.shortcuts import render
 
 
 @login_required(login_url="/login/")
+def index(request):
+    context = {'segment': 'index'}
+
+    html_template = loader.get_template('home/index.html')
+    return HttpResponse(html_template.render(context, request))
+
+
+@login_required(login_url="/login/")
 def pages(request):
     context = {}
     # All resource paths end in .html.
@@ -32,8 +40,6 @@ def pages(request):
         return HttpResponse(html_template.render(context, request))
 
 # paginas
-
-@login_required(login_url="/login/")
 def perfil(request):
     segment = 'Perfil.html'
     context = {'segment': segment}
@@ -41,7 +47,6 @@ def perfil(request):
     html_template = loader.get_template('home/perfil.html')
     return HttpResponse(html_template.render(context, request))
 
-@login_required(login_url="/login/")
 def alumnos(request):
     segment = 'alumnos.html'
     context = {'segment': segment}
@@ -51,15 +56,70 @@ def alumnos(request):
 
     return render(request, 'home/alumnos.html', context)
 
-@login_required(login_url="/login/")
 def notas(request):
-    segment = 'notas.html'
-    context = {'segment': segment}
+    preguntas = [
+        {
+            'pregunta': '1.¿Qué tipo de actividades prefieres?',
+            'respuestas': [
+                {'opcion': 'A', 'texto': 'Actividades al aire libre'},
+                {'opcion': 'B', 'texto': 'Actividades creativas e imaginativas'},
+                {'opcion': 'C', 'texto': 'Actividades intelectuales y analíticas'}
+            ]
+        },
+        {
+            'pregunta': '2.¿Qué tipo de entorno te gusta más?',
+            'respuestas': [
+                {'opcion': 'A', 'texto': 'Entornos naturales'},
+                {'opcion': 'B', 'texto': 'Entornos artísticos'},
+                {'opcion': 'C', 'texto': 'Entornos académicos o de negocios'}
+            ]
+        }
+        # Agregar más preguntas aquí si es necesario
+    ]
 
+    if request.method == 'POST':
+        respuestas = request.POST
+        # Verificar si todas las preguntas han sido respondidas
+        if all(pregunta['pregunta'] in respuestas for pregunta in preguntas):
+            puntuaciones = {pregunta['pregunta']: respuestas.get(pregunta['pregunta']) for pregunta in preguntas}
+
+            # Aquí agregamos la lógica para calcular el resultado basado en las respuestas
+            puntaje_artistico = 0
+            puntaje_matematico = 0
+            puntaje_intelectual = 0
+            
+            for pregunta, respuesta in puntuaciones.items():
+                if pregunta.startswith('1'):  # Si es la pregunta 1
+                    if respuesta == 'A':
+                        puntaje_artistico += 1
+                    elif respuesta == 'B':
+                        puntaje_matematico += 1
+                    elif respuesta == 'C':
+                        puntaje_intelectual += 1
+
+            # Determina el resultado basado en los puntajes mas vocaciones
+            if puntaje_artistico > puntaje_matematico and puntaje_artistico > puntaje_intelectual:
+                resultado = "Tu perfil es: Matematico"
+            elif puntaje_matematico > puntaje_artistico and puntaje_matematico > puntaje_intelectual:
+                resultado = "Tu perfil es: Ciencialo y tecnologico"
+            elif puntaje_intelectual > puntaje_artistico and puntaje_intelectual > puntaje_matematico:
+                resultado = "Tu perfil es: Necesita dieta"
+            else:
+                resultado = "Tu perfil es mixto o no se puede determinar claramente"
+
+            context = {'preguntas': preguntas, 'resultado': resultado}
+        else:
+            error_message = "Debes responder todas las preguntas."
+            context = {'preguntas': preguntas, 'error_message': error_message}
+    else:
+        context = {'preguntas': preguntas}
+
+    segment = 'notas.html'
     html_template = loader.get_template('home/notas.html')
     return HttpResponse(html_template.render(context, request))
 
-@login_required(login_url="/login/")
+
+
 def testvocacional(request):
     segment = 'testvocacional.html'
     context = {'segment': segment}
@@ -67,7 +127,6 @@ def testvocacional(request):
     html_template = loader.get_template('home/testvocacional.html')
     return HttpResponse(html_template.render(context, request))
 
-@login_required(login_url="/login/")
 def cuestionario(request):
     segment = 'cuestionario.html'
     context = {'segment': segment}
