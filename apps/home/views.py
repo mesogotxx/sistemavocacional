@@ -91,8 +91,20 @@ def notas(request):
             puntaje_intelectual = 0
             puntaje_tecnologicos = 0
             
+            #arreglar esto mucho codigo 
+            
             for pregunta, respuesta in puntuaciones.items():
                 if pregunta.startswith('1'):  # Si es la pregunta 1
+                    if respuesta == 'A':
+                        puntaje_artistico += 1
+                    elif respuesta == 'B':
+                        puntaje_matematico += 1
+                    elif respuesta == 'C':
+                        puntaje_intelectual += 1
+                    elif respuesta == 'D':
+                        puntaje_tecnologicos += 1
+            for pregunta, respuesta in puntuaciones.items():
+                if pregunta.startswith('2'):  # Si es la pregunta 1
                     if respuesta == 'A':
                         puntaje_artistico += 1
                     elif respuesta == 'B':
@@ -110,6 +122,8 @@ def notas(request):
                 resultado = "Tu perfil es: Necesita dieta"
             elif puntaje_tecnologicos > puntaje_artistico and puntaje_tecnologicos > puntaje_matematico and puntaje_tecnologicos > puntaje_intelectual :
                 resultado = "Tu perfil es: Informatica"
+            elif puntaje_tecnologicos == puntaje_artistico and puntaje_tecnologicos == puntaje_matematico and puntaje_tecnologicos == puntaje_intelectual :
+                resultado = "Tu perfil es: Null"
             else:
                 resultado = "Tu perfil es mixto o no se puede determinar claramente"
 
