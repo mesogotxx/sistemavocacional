@@ -42,18 +42,18 @@ def pages(request):
 @login_required(login_url="/login/")
 def perfil(request):
     context = {
-        'segment': 'perfil'  # Agregar el segmento 'perfil' al contexto
+        'segment': 'perfil' 
     }
     return render(request, 'home/perfil.html', context)
 
 @login_required(login_url="/login/")
 def alumnos(request):
-    # Obtener la sección de la URL
+    
     seccion = request.GET.get('seccion')
 
     alumnos = Alumno.objects.filter(año_cursado__nombre=seccion)
 
-    # Obtener todos los años de curso para mostrar en el menú desplegable
+    
     añocursos = AñoCurso.objects.all()
 
     context = {'segment': 'alumnos', 'alumnos': alumnos,'seccion': seccion, 'añocursos': añocursos}
