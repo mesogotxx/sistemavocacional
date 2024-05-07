@@ -92,7 +92,7 @@ def notas(request):
             puntaje_tecnologicos = 0
             
             #arreglar esto mucho codigo 
-            
+            # se le asigna 1 punto por pregunta sobre las habilidades 
             for pregunta, respuesta in puntuaciones.items():
                 if pregunta.startswith('1'):  # Si es la pregunta 1
                     if respuesta == 'A':
@@ -104,7 +104,7 @@ def notas(request):
                     elif respuesta == 'D':
                         puntaje_tecnologicos += 1
             for pregunta, respuesta in puntuaciones.items():
-                if pregunta.startswith('2'):  # Si es la pregunta 1
+                if pregunta.startswith('2'):  # Si es la pregunta 2
                     if respuesta == 'A':
                         puntaje_artistico += 1
                     elif respuesta == 'B':
@@ -113,6 +113,7 @@ def notas(request):
                         puntaje_intelectual += 1
                     elif respuesta == 'D':
                         puntaje_tecnologicos += 1
+
             # Determina el resultado basado en los puntajes mas vocaciones
             if puntaje_artistico > puntaje_matematico and puntaje_artistico > puntaje_intelectual:
                 resultado = "Tu perfil es: Matematico"
