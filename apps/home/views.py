@@ -63,7 +63,8 @@ def notas(request):
             'respuestas': [
                 {'opcion': 'A', 'texto': 'Actividades al aire libre'},
                 {'opcion': 'B', 'texto': 'Actividades creativas e imaginativas'},
-                {'opcion': 'C', 'texto': 'Actividades intelectuales y analíticas'}
+                {'opcion': 'C', 'texto': 'Actividades intelectuales y analíticas'},
+                {'opcion': 'D', 'texto': 'Actividades Electronicas'}
             ]
         },
         {
@@ -71,7 +72,8 @@ def notas(request):
             'respuestas': [
                 {'opcion': 'A', 'texto': 'Entornos naturales'},
                 {'opcion': 'B', 'texto': 'Entornos artísticos'},
-                {'opcion': 'C', 'texto': 'Entornos académicos o de negocios'}
+                {'opcion': 'C', 'texto': 'Entornos académicos o de negocios'},
+                {'opcion': 'D', 'texto': 'Entornos Tecnologicos'}
             ]
         }
         # Agregar más preguntas aquí si es necesario
@@ -87,6 +89,7 @@ def notas(request):
             puntaje_artistico = 0
             puntaje_matematico = 0
             puntaje_intelectual = 0
+            puntaje_tecnologicos = 0
             
             for pregunta, respuesta in puntuaciones.items():
                 if pregunta.startswith('1'):  # Si es la pregunta 1
@@ -96,7 +99,8 @@ def notas(request):
                         puntaje_matematico += 1
                     elif respuesta == 'C':
                         puntaje_intelectual += 1
-
+                    elif respuesta == 'D':
+                        puntaje_tecnologicos += 1
             # Determina el resultado basado en los puntajes mas vocaciones
             if puntaje_artistico > puntaje_matematico and puntaje_artistico > puntaje_intelectual:
                 resultado = "Tu perfil es: Matematico"
@@ -104,6 +108,8 @@ def notas(request):
                 resultado = "Tu perfil es: Ciencialo y tecnologico"
             elif puntaje_intelectual > puntaje_artistico and puntaje_intelectual > puntaje_matematico:
                 resultado = "Tu perfil es: Necesita dieta"
+            elif puntaje_tecnologicos > puntaje_artistico and puntaje_tecnologicos > puntaje_matematico and puntaje_tecnologicos > puntaje_intelectual :
+                resultado = "Tu perfil es: Informatica"
             else:
                 resultado = "Tu perfil es mixto o no se puede determinar claramente"
 
