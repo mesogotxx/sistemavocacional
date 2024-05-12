@@ -15,7 +15,7 @@
     {% for respuesta in pregunta.respuestas %}
     <input type="radio" name="{{ pregunta.pregunta }}" value="{{ respuesta.opcion }}"> {{ respuesta.texto }}<br>
     {% endfor %}
-    <!-- Añadir una línea horizontal para separar las preguntas -->
+
     <hr>
     {% endfor %}
     <p><input type="submit" value="Enviar"></p>
@@ -23,7 +23,6 @@
 {% if resultado %}
 <p>{{ resultado }}</p>
 
-<h1>Hola</h1>
 {% endif %}
 
 

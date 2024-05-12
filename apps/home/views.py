@@ -85,48 +85,47 @@ def notas(request):
         if all(pregunta['pregunta'] in respuestas for pregunta in preguntas):
             puntuaciones = {pregunta['pregunta']: respuestas.get(pregunta['pregunta']) for pregunta in preguntas}
 
-            # Aquí agregamos la lógica para calcular el resultado basado en las respuestas
-            puntaje_artistico = 0
-            puntaje_matematico = 0
-            puntaje_intelectual = 0
-            puntaje_tecnologicos = 0
-            
-            #arreglar esto mucho codigo 
-            # se le asigna 1 punto por pregunta sobre las habilidades 
-            for pregunta, respuesta in puntuaciones.items():
-                if pregunta.startswith('1'):  # Si es la pregunta 1
-                    if respuesta == 'A':
-                        puntaje_artistico += 1
-                    elif respuesta == 'B':
-                        puntaje_matematico += 1
-                    elif respuesta == 'C':
-                        puntaje_intelectual += 1
-                    elif respuesta == 'D':
-                        puntaje_tecnologicos += 1
-            for pregunta, respuesta in puntuaciones.items():
-                if pregunta.startswith('2'):  # Si es la pregunta 2
-                    if respuesta == 'A':
-                        puntaje_artistico += 1
-                    elif respuesta == 'B':
-                        puntaje_matematico += 1
-                    elif respuesta == 'C':
-                        puntaje_intelectual += 1
-                    elif respuesta == 'D':
-                        puntaje_tecnologicos += 1
+            # Inicializar puntajes
+            puntajes = {
+                'Ingeniería Civil': 0, #Ingeniería Civil
+                'Medicina': 0, #Medicina
+                'Educación': 0, #Educación
+                'Administración de Empresas': 0, #Administración de Empresas
+                'Derecho': 0, #Derecho
+                'Contabilidad y Finanzas': 0, #Contabilidad y Finanzas
+                'Psicologia': 0, #Psicologia
+                'Tecnología de la Información': 0, #Tecnología de la Información
+                'Turismo y Hotelería': 0 #Turismo y Hotelería
+                    #MAS!!               
+            }
 
-            # Determina el resultado basado en los puntajes mas vocaciones
-            if puntaje_artistico > puntaje_matematico and puntaje_artistico > puntaje_intelectual:
-                resultado = "Tu perfil es: Matematico"
-            elif puntaje_matematico > puntaje_artistico and puntaje_matematico > puntaje_intelectual:
-                resultado = "Tu perfil es: Ciencialo y tecnologico"
-            elif puntaje_intelectual > puntaje_artistico and puntaje_intelectual > puntaje_matematico:
-                resultado = "Tu perfil es: Necesita dieta"
-            elif puntaje_tecnologicos > puntaje_artistico and puntaje_tecnologicos > puntaje_matematico and puntaje_tecnologicos > puntaje_intelectual :
-                resultado = "Tu perfil es: Informatica"
-            elif puntaje_tecnologicos == puntaje_artistico and puntaje_tecnologicos == puntaje_matematico and puntaje_tecnologicos == puntaje_intelectual :
-                resultado = "Tu perfil es: Null"
-            else:
+            # Contar puntajes
+            for pregunta, respuesta in puntuaciones.items():
+                if respuesta == 'A':
+                    puntajes['Ingeniería Civil'] += 1
+                elif respuesta == 'B':
+                    puntajes['Medicina'] += 1
+                elif respuesta == 'C':
+                    puntajes['Educación'] += 1
+                elif respuesta == 'D':
+                    puntajes['Derecho'] += 1
+                elif respuesta == 'D':
+                    puntajes['Contabilidad y Finanzas'] += 1
+                elif respuesta == 'D':
+                    puntajes['Psicologia'] += 1
+                elif respuesta == 'D':
+                    puntajes['Tecnología de la Información'] += 1
+                elif respuesta == 'D':
+                    puntajes['Turismo y Hotelería'] += 1
+
+            # Determinar el resultado
+            max_puntaje = max(puntajes.values()) #Aqui sacas el puntaje maximo
+            max_puntajes = [key for key, value in puntajes.items() if value == max_puntaje]
+
+            if len(max_puntajes) > 1:  # Si hay empate entre varios perfiles
                 resultado = "Tu perfil es mixto o no se puede determinar claramente"
+            else:
+                resultado = "Tu perfil es: " + max_puntajes[0]
 
             context = {'preguntas': preguntas, 'resultado': resultado}
         else:
