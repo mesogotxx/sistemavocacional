@@ -10,17 +10,17 @@
 <h1>Test Vocacional</h1>
 <form action="{% url 'notas' %}" method="post">
     {% csrf_token %}
-    {% for pregunta in preguntas %}
-    <p>{{ pregunta.pregunta }}</p>
-    {% for respuesta in pregunta.respuestas %}
-    <input type="radio" name="{{ pregunta.pregunta }}" value="{{ respuesta.opcion }}"> {{ respuesta.texto }}<br>
-    {% endfor %}
+    {% for pregunta in preguntas %} <!-- aqui comienza el bucle de preguntas  -->
+    <p>{{ pregunta.pregunta }}</p> <!-- aqui muestra la pregunta  -->
+    {% for respuesta in pregunta.respuestas %}   <!-- aqui comienza el bucle de posibles repuestas  -->
+    <input type="radio" name="{{ pregunta.pregunta }}" value="{{ respuesta.opcion }}"> {{ respuesta.texto }}<br> <!-- aqui muestra las opciones  -->
+    {% endfor %} <!-- termino de bucle respuestas  -->
 
     <hr>
-    {% endfor %}
+    {% endfor %} <!-- termino de bucle preguntas -->
     <p><input type="submit" value="Enviar"></p>
 </form>
-{% if resultado %}
+{% if resultado %} 
 <p>{{ resultado }}</p>
 
 {% endif %}
