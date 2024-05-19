@@ -1,126 +1,33 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Page User {% endblock %} 
-
-
-
+{% block title %} Test Vocacional {% endblock %}
 
 {% block stylesheets %}
-<!-- agregar css -->
 <link rel="stylesheet" href="../../../../static/assets/css/test_voca.css">
-
 {% endblock stylesheets %}
 
 {% block content %}
-
 <h1>Test de Orientación Vocacional "CSA"</h1>
-<body>
+<form id="testForm" action="{% url 'testvocacional' %}" method="post">
 
-<ul>
-    <li>
-        <label for="q1">1. ¿Aceptarías trabajar escribiendo artículos en la sección económica de un diario?</label>
-        <div>
-            <input type="radio" id="q1_yes" name="q1" value="Sí">
-            <label for="q1_yes">Sí</label>
-            <input type="radio" id="q1_no" name="q1" value="No">
-            <label for="q1_no">No</label>
-        </div>
-    </li>
-    <li>
-        <label for="q2">2. ¿Te ofrecerías para organizar la despedida de soltero de uno de tus amigos?</label>
-        <div>
-            <input type="radio" id="q2_yes" name="q2" value="Sí">
-            <label for="q2_yes">Sí</label>
-            <input type="radio" id="q2_no" name="q2" value="No">
-            <label for="q2_no">No</label>
-        </div>
-    </li>
-    <li>
-        <label for="q3">3. ¿Te gustaría dirigir/crear un proyecto de urbanización en tu provincia?</label>
-        <div>
-            <input type="radio" id="q3_yes" name="q3" value="Sí">
-            <label for="q3_yes">Sí</label>
-            <input type="radio" id="q3_no" name="q3" value="No">
-            <label for="q3_no">No</label>
-        </div>
-    </li>
-    <li>
-        <label for="q4">4. ¿A una frustración siempre opones un pensamiento positivo?</label>
-        <div>
-            <input type="radio" id="q4_yes" name="q4" value="Sí">
-            <label for="q4_yes">Sí</label>
-            <input type="radio" id="q4_no" name="q4" value="No">
-            <label for="q4_no">No</label>
-        </div>
-    </li>
-    <li>
-        <label for="q5">5. ¿Te dedicarías a socorrer a personas accidentadas o atacadas por asaltantes?</label>
-        <div>
-            <input type="radio" id="q5_yes" name="q5" value="Sí">
-            <label for="q5_yes">Sí</label>
-            <input type="radio" id="q5_no" name="q5" value="No">
-            <label for="q5_no">No</label>
-        </div>
-    </li>
-    <li>
-        <label for="q6">6. ¿Cuando eras chico, te interesaba saber cómo estaban construidos tus juguetes?</label>
-        <div>
-            <input type="radio" id="q6_yes" name="q6" value="Sí">
-            <label for="q6_yes">Sí</label>
-            <input type="radio" id="q6_no" name="q6" value="No">
-            <label for="q6_no">No</label>
-        </div>
-    </li>
-    <li>
-        <label for="q7">7. ¿Te interesan más los misterios de la naturaleza que los secretos de la tecnología?</label>
-        <div>
-            <input type="radio" id="q7_yes" name="q7" value="Sí">
-            <label for="q7_yes">Sí</label>
-            <input type="radio" id="q7_no" name="q7" value="No">
-            <label for="q7_no">No</label>
-        </div>
-    </li>
-    <li>
-        <label for="q8">8. ¿Escuchas atentamente los problemas que te plantean tus amigos?</label>
-        <div>
-            <input type="radio" id="q8_yes" name="q8" value="Sí">
-            <label for="q8_yes">Sí</label>
-            <input type="radio" id="q8_no" name="q8" value="No">
-            <label for="q8_no">No</label>
-        </div>
-    </li>
-    <li>
-        <label for="q9">9. ¿Te ofrecerías para explicar a tus compañeros un determinado tema que ellos no entendieron?</label>
-        <div>
-            <input type="radio" id="q9_yes" name="q9" value="Sí">
-            <label for="q9_yes">Sí</label>
-            <input type="radio" id="q9_no" name="q9" value="No">
-            <label for="q9_no">No</label>
-        </div>
-    </li>
-    <li>
-        <label for="q10">10. ¿Eres exigente y crítico con tu equipo de trabajo?</label>
-        <div>
-            <input type="radio" id="q10_yes" name="q10" value="Sí">
-            <label for="q10_yes">Sí</label>
-            <input type="radio" id="q10_no" name="q10" value="No">
-            <label for="q10_no">No</label>
-        </div>
-    </li>
-</ul>
+    {% csrf_token %}
+    {% for pregunta in preguntas %} <!-- bucle de preguntas -->
+        <p>{{ pregunta.pregunta }}</p> 
+        {% for respuesta in pregunta.respuestas %}<!-- bucle de respuestas -->
+            <input type="radio" name="pregunta_{{ forloop.parentloop.counter }}" value="{{ respuesta.opcion }}"> {{ respuesta.texto }}<br>
+        {% endfor %}
+        <hr>
+    {% endfor %}
+    <p><input type="submit" value="Enviar"></p>
+</form>
 
-    <button onclick="calcularPorcentaje(); mostrarMensaje();">Calcular Porcentaje</button>
-
-
-    <div id="resultados"></div>
-    <div id="mensaje"></div>
-
-</body>
-
+{% if resultado %}
+    <p>{{ resultado }}</p>
+{% elif error_message %}
+    <p style="color: red;">{{ error_message }}</p> <!-- mensaje de error -->
+{% endif %}
 {% endblock content %}
-
 
 {% block javascripts %}
 <!-- agregar js -->
-<script src="../../../../static/assets/js/core/test_voca.js"></script>
 {% endblock javascripts %}
