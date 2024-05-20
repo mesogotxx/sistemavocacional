@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="../../../../static/assets/css/test_voca.css">
 {% endblock stylesheets %}
 
+<div id="content">
+   
+
 {% block content %}
 <h1>Test de Orientación Vocacional "CSA"</h1>
 <form id="testForm" action="{% url 'testvocacional' %}" method="post">
@@ -27,7 +30,8 @@
     <p style="color: red;">{{ error_message }}</p> <!-- mensaje de error -->
 {% endif %}
 {% endblock content %}
+</div>
 
 {% block javascripts %}
-<!-- agregar js -->
+<script src="../../../../static/assets/js/core/test_voca.js"></script>
 {% endblock javascripts %}
