@@ -42,26 +42,28 @@ class Profesor(models.Model):
     p_nombre = models.CharField(max_length=45, verbose_name='Primer nombre')
     s_nombre = models.CharField(max_length=45, blank=True, null=True, verbose_name='Segundo nombre')
     apellido_pat = models.CharField(max_length=45, verbose_name='Apellido paterno')
-    apellido_mat = models.CharField(max_length=45, verbose_name='Aperllido materno')
+    apellido_mat = models.CharField(max_length=45, verbose_name='Apellido materno')
     correo = models.CharField(max_length=45, verbose_name='Correo')
     celular = models.IntegerField(blank=True, null=True, verbose_name='Celular')
     tipo_usuario = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE)
+    asignaturas = models.ManyToManyField('Asignatura', related_name='profesores', blank=True)
 
     def __str__(self):
         return f"{self.p_nombre} {self.apellido_pat} {self.apellido_mat}"
     
     class Meta:
-        verbose_name_plural = "Profesores"    
+        verbose_name_plural = "Profesores"
     
 class Asignatura(models.Model):
     id_asignatura = models.AutoField(primary_key=True)
     nombre_asig = models.CharField(max_length=45, verbose_name='Asignatura')
-    profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE, verbose_name='Profesor')
 
     def __str__(self):
         return self.nombre_asig
+    
     class Meta:
-        verbose_name_plural = "Asignaturas"  
+        verbose_name_plural = "Asignaturas"
+        
 class Calificaciones(models.Model):
     id_calificaciones = models.AutoField(primary_key=True)
     calificacion = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Calificacion')
