@@ -54,6 +54,8 @@ JAZZMIN_SETTINGS = {
     "show_footer": False,
 
     "welcome_sign": "Bienvenido a CSA admin",
+
+    
 }
 
 

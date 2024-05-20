@@ -21,16 +21,7 @@
                       ID
                     </th>
                     <th>
-                      Nombres
-                    </th>
-                    <th>
-                      Apellidos
-                    </th>
-                    <th>
-                      Direccion
-                    </th>
-                    <th>
-                      Numero apoderado
+                      Alumno
                     </th>
                   </thead>
                   {% for alumno in alumnos %}
@@ -40,16 +31,7 @@
                         {{ alumno.id_alumno }}
                       </td>
                       <td>
-                        {{ alumno.p_nombre|capfirst }} {% if alumno.s_nombre %}{{ alumno.s_nombre|capfirst }}{% endif %}
-                      </td>
-                      <td>
-                        {{ alumno.apellido_pat|capfirst }} {{ alumno.apellido_mat|capfirst }}
-                      </td>
-                      <td>
-                        {{ alumno.direccion|capfirst }}
-                      </td>
-                      <td class="text-primary">
-                        {{ alumno.numero_apoderado }}
+                        {{ alumno.apellido_pat|capfirst }} {{ alumno.apellido_mat|capfirst }} {{ alumno.p_nombre|capfirst }} {% if alumno.s_nombre %}{{ alumno.s_nombre|capfirst }}{% endif %}
                       </td>
                     </tr>
                   </tbody>
