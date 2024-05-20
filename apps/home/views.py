@@ -66,13 +66,6 @@ def alumnos(request):
     context = {'segment': 'alumnos', 'alumnos': alumnos,'seccion': seccion, 'añocursos': añocursos}
     return render(request, 'home/alumnos.html', context)
 
-<<<<<<< HEAD
-def notas(request):
-    segment = 'notas.html'
-    context = {'segment': segment}
-    html_template = loader.get_template('home/notas.html')
-    return HttpResponse(html_template.render(context, request))
-=======
 @login_required(login_url="/login/")
 def seccion(request):
     años = AñoCurso.objects.all()
@@ -100,14 +93,12 @@ def seccion(request):
 def notas(request):
     context = {'segment': 'notas'}
     return render(request, 'home/notas.html', context)
->>>>>>> f3876f84272908258fb464afb2db005be1aa6cf3
 
 
 
 
 
 def testvocacional(request):
-<<<<<<< HEAD
     preguntas = [
         {
             'pregunta': '1. ¿Qué tipo de actividades te resultan más interesantes?',
@@ -179,10 +170,6 @@ def testvocacional(request):
 
     html_template = loader.get_template('home/testvocacional.html')
     return HttpResponse(html_template.render(context, request))
-=======
-    context = {'segment': 'testvocacional'}
-    return render(request, 'home/testvocacional.html', context)
->>>>>>> f3876f84272908258fb464afb2db005be1aa6cf3
 
 
 
