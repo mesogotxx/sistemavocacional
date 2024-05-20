@@ -66,6 +66,7 @@ def alumnos(request):
     context = {'segment': 'alumnos', 'alumnos': alumnos,'seccion': seccion, 'añocursos': añocursos}
     return render(request, 'home/alumnos.html', context)
 
+<<<<<<<<< Temporary merge branch 1
 @login_required(login_url="/login/")
 def seccion(request):
     años = AñoCurso.objects.all()
@@ -93,12 +94,23 @@ def seccion(request):
 def notas(request):
     context = {'segment': 'notas'}
     return render(request, 'home/notas.html', context)
+=========
+def notas(request):
+    segment = 'notas.html'
+    context = {'segment': segment}
+    html_template = loader.get_template('home/notas.html')
+    return HttpResponse(html_template.render(context, request))
+>>>>>>>>> Temporary merge branch 2
 
 
 
 
 
 def testvocacional(request):
+<<<<<<<<< Temporary merge branch 1
+    context = {'segment': 'testvocacional'}
+    return render(request, 'home/testvocacional.html', context)
+=========
     preguntas = [
         {
             'pregunta': '1. ¿Qué tipo de actividades te resultan más interesantes?',
@@ -170,6 +182,7 @@ def testvocacional(request):
 
     html_template = loader.get_template('home/testvocacional.html')
     return HttpResponse(html_template.render(context, request))
+>>>>>>>>> Temporary merge branch 2
 
 
 
