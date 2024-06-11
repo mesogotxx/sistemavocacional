@@ -110,21 +110,131 @@ def testvocacional(request):
 
 
     preguntas = [
-        {
-            'pregunta': '1. ¿Qué tipo de actividades te resultan más interesantes?',
-            'respuestas': [
-                {'opcion': 'A', 'texto': 'Diseñar y construir estructuras físicas.'},
-                {'opcion': 'B', 'texto': 'Cuidar y mejorar la salud de las personas.'},
-                {'opcion': 'C', 'texto': 'Enseñar y compartir conocimientos.'},
-                {'opcion': 'D', 'texto': 'Gestionar y dirigir proyectos empresariales.'},
-                {'opcion': 'E', 'texto': 'Defender los derechos y resolver conflictos legales.'},
-                {'opcion': 'F', 'texto': 'Trabajar con números y manejar aspectos financieros.'},
-                {'opcion': 'G', 'texto': 'Comprender y ayudar a las personas en su desarrollo emocional.'},
-                {'opcion': 'H', 'texto': 'Trabajar con sistemas y tecnologías digitales.'},
-                {'opcion': 'I', 'texto': 'Planificar y organizar experiencias de viaje y hospitalidad.'}
-            ]
-        }
-    ]
+    {
+        'pregunta': '1. ¿Qué tipo de actividades te resultan más interesantes?',
+        'respuestas': [
+            {'opcion': 'A', 'texto': 'Diseñar y construir estructuras físicas.'},  # Ingeniería Civil
+            {'opcion': 'B', 'texto': 'Cuidar y mejorar la salud de las personas.'},  # Medicina
+            {'opcion': 'C', 'texto': 'Enseñar y compartir conocimientos.'},  # Educación
+            {'opcion': 'D', 'texto': 'Gestionar y dirigir proyectos empresariales.'},  # Administración de Empresas
+            {'opcion': 'E', 'texto': 'Defender los derechos y resolver conflictos legales.'},  # Derecho
+            {'opcion': 'F', 'texto': 'Trabajar con números y manejar aspectos financieros.'},  # Contabilidad y Finanzas
+            {'opcion': 'G', 'texto': 'Comprender y ayudar a las personas en su desarrollo emocional.'},  # Psicología
+            {'opcion': 'H', 'texto': 'Trabajar con sistemas y tecnologías digitales.'},  # Tecnología de la Información
+            {'opcion': 'I', 'texto': 'Planificar y organizar experiencias de viaje y hospitalidad.'}  # Turismo y Hotelería
+        ]
+    },
+    {
+        'pregunta': '2. ¿Qué habilidad te gustaría desarrollar más?',
+        'respuestas': [
+            {'opcion': 'A', 'texto': 'Habilidad para diseñar planos y cálculos estructurales.'},  # Ingeniería Civil
+            {'opcion': 'B', 'texto': 'Capacidad para diagnosticar y tratar enfermedades.'},  # Medicina
+            {'opcion': 'C', 'texto': 'Competencia para impartir clases y desarrollar material educativo.'},  # Educación
+            {'opcion': 'D', 'texto': 'Habilidad para liderar y gestionar equipos.'},  # Administración de Empresas
+            {'opcion': 'E', 'texto': 'Destreza para argumentar y defender casos jurídicos.'},  # Derecho
+            {'opcion': 'F', 'texto': 'Aptitud para analizar y gestionar recursos financieros.'},  # Contabilidad y Finanzas
+            {'opcion': 'G', 'texto': 'Capacidad para escuchar y ayudar a las personas.'},  # Psicología
+            {'opcion': 'H', 'texto': 'Conocimiento en programación y desarrollo de software.'},  # Tecnología de la Información
+            {'opcion': 'I', 'texto': 'Habilidad para coordinar eventos y experiencias turísticas.'}  # Turismo y Hotelería
+        ]
+    },
+    {
+        'pregunta': '3. ¿En qué entorno laboral te sientes más cómodo?',
+        'respuestas': [
+            {'opcion': 'A', 'texto': 'En una obra de construcción.'},  # Ingeniería Civil
+            {'opcion': 'B', 'texto': 'En un hospital o clínica.'},  # Medicina
+            {'opcion': 'C', 'texto': 'En un aula o centro educativo.'},  # Educación
+            {'opcion': 'D', 'texto': 'En una oficina corporativa.'},  # Administración de Empresas
+            {'opcion': 'E', 'texto': 'En un despacho de abogados.'},  # Derecho
+            {'opcion': 'F', 'texto': 'En una firma de contabilidad.'},  # Contabilidad y Finanzas
+            {'opcion': 'G', 'texto': 'En una consulta psicológica.'},  # Psicología
+            {'opcion': 'H', 'texto': 'En una empresa de tecnología.'},  # Tecnología de la Información
+            {'opcion': 'I', 'texto': 'En una agencia de viajes o hotel.'}  # Turismo y Hotelería
+        ]
+    },
+    {
+        'pregunta': '4. ¿Qué te motiva más en tu trabajo?',
+        'respuestas': [
+            {'opcion': 'A', 'texto': 'Ver resultados tangibles en las estructuras que construyo.'},  # Ingeniería Civil
+            {'opcion': 'B', 'texto': 'Salvar y mejorar vidas.'},  # Medicina
+            {'opcion': 'C', 'texto': 'Ver a mis alumnos aprender y crecer.'},  # Educación
+            {'opcion': 'D', 'texto': 'Alcanzar metas y objetivos empresariales.'},  # Administración de Empresas
+            {'opcion': 'E', 'texto': 'Lograr justicia y defender los derechos de las personas.'},  # Derecho
+            {'opcion': 'F', 'texto': 'Manejar y hacer crecer el capital financiero.'},  # Contabilidad y Finanzas
+            {'opcion': 'G', 'texto': 'Ayudar a las personas a superar sus problemas.'},  # Psicología
+            {'opcion': 'H', 'texto': 'Innovar y mejorar sistemas tecnológicos.'},  # Tecnología de la Información
+            {'opcion': 'I', 'texto': 'Crear experiencias memorables para las personas.'}  # Turismo y Hotelería
+        ]
+    },
+    {
+        'pregunta': '5. ¿Qué tipo de proyectos te gustaría liderar?',
+        'respuestas': [
+            {'opcion': 'A', 'texto': 'Proyectos de infraestructura y construcción.'},  # Ingeniería Civil
+            {'opcion': 'B', 'texto': 'Investigaciones médicas y tratamientos innovadores.'},  # Medicina
+            {'opcion': 'C', 'texto': 'Programas educativos y de formación.'},  # Educación
+            {'opcion': 'D', 'texto': 'Estrategias de crecimiento empresarial.'},  # Administración de Empresas
+            {'opcion': 'E', 'texto': 'Casos legales y reformas judiciales.'},  # Derecho
+            {'opcion': 'F', 'texto': 'Proyectos de auditoría y consultoría financiera.'},  # Contabilidad y Finanzas
+            {'opcion': 'G', 'texto': 'Iniciativas de bienestar emocional y mental.'},  # Psicología
+            {'opcion': 'H', 'texto': 'Desarrollo de aplicaciones y sistemas tecnológicos.'},  # Tecnología de la Información
+            {'opcion': 'I', 'texto': 'Eventos y actividades turísticas.'}  # Turismo y Hotelería
+        ]
+    },
+    {
+        'pregunta': '6. ¿Qué aspecto valoras más en una carrera profesional?',
+        'respuestas': [
+            {'opcion': 'A', 'texto': 'La oportunidad de crear e innovar en construcciones.'},  # Ingeniería Civil
+            {'opcion': 'B', 'texto': 'La posibilidad de salvar y mejorar vidas.'},  # Medicina
+            {'opcion': 'C', 'texto': 'La oportunidad de influir y educar a las nuevas generaciones.'},  # Educación
+            {'opcion': 'D', 'texto': 'El potencial de crecimiento y liderazgo.'},  # Administración de Empresas
+            {'opcion': 'E', 'texto': 'La capacidad de defender derechos y lograr justicia.'},  # Derecho
+            {'opcion': 'F', 'texto': 'La estabilidad y crecimiento financiero.'},  # Contabilidad y Finanzas
+            {'opcion': 'G', 'texto': 'El impacto positivo en la salud mental de las personas.'},  # Psicología
+            {'opcion': 'H', 'texto': 'El constante avance y cambio tecnológico.'},  # Tecnología de la Información
+            {'opcion': 'I', 'texto': 'La interacción y servicio a los demás.'}  # Turismo y Hotelería
+        ]
+    },
+    {
+        'pregunta': '7. ¿Qué tipo de problemas disfrutas resolver?',
+        'respuestas': [
+            {'opcion': 'A', 'texto': 'Problemas de diseño y construcción.'},  # Ingeniería Civil
+            {'opcion': 'B', 'texto': 'Problemas de salud y diagnóstico médico.'},  # Medicina
+            {'opcion': 'C', 'texto': 'Dificultades de aprendizaje y enseñanza.'},  # Educación
+            {'opcion': 'D', 'texto': 'Desafíos en la gestión empresarial.'},  # Administración de Empresas
+            {'opcion': 'E', 'texto': 'Conflictos legales y disputas judiciales.'},  # Derecho
+            {'opcion': 'F', 'texto': 'Problemas financieros y contables.'},  # Contabilidad y Finanzas
+            {'opcion': 'G', 'texto': 'Problemas emocionales y psicológicos.'},  # Psicología
+            {'opcion': 'H', 'texto': 'Problemas técnicos y de programación.'},  # Tecnología de la Información
+            {'opcion': 'I', 'texto': 'Desafíos en la organización de eventos y viajes.'}  # Turismo y Hotelería
+        ]
+    },
+    {
+        'pregunta': '8. ¿Qué te gustaría aprender más?',
+        'respuestas': [
+            {'opcion': 'A', 'texto': 'Técnicas avanzadas de ingeniería y construcción.'},  # Ingeniería Civil
+            {'opcion': 'B', 'texto': 'Nuevas tecnologías y tratamientos médicos.'},  # Medicina
+            {'opcion': 'C', 'texto': 'Métodos innovadores de enseñanza.'},  # Educación
+            {'opcion': 'D', 'texto': 'Estrategias de administración y liderazgo.'},  # Administración de Empresas
+            {'opcion': 'E', 'texto': 'Normas y leyes actualizadas.'},  # Derecho
+            {'opcion': 'F', 'texto': 'Técnicas de auditoría y gestión financiera.'},  # Contabilidad y Finanzas
+            {'opcion': 'G', 'texto': 'Nuevas terapias y enfoques psicológicos.'},  # Psicología
+            {'opcion': 'H', 'texto': 'Lenguajes de programación y desarrollo de software.'},  # Tecnología de la Información
+            {'opcion': 'I', 'texto': 'Tendencias y gestión en turismo y hospitalidad.'}  # Turismo y Hotelería
+        ]
+    },
+    {
+        'pregunta': '9. ¿Cuál de estas responsabilidades te resulta más atractiva?',
+        'respuestas': [
+            {'opcion': 'A', 'texto': 'Supervisar la construcción de edificios y obras públicas.'},  # Ingeniería Civil
+            {'opcion': 'B', 'texto': 'Atender a pacientes y gestionar su tratamiento.'},  # Medicina
+            {'opcion': 'C', 'texto': 'Preparar y dar clases a estudiantes.'},  # Educación
+            {'opcion': 'D', 'texto': 'Planificar y dirigir estrategias empresariales.'},  # Administración de Empresas
+            {'opcion': 'E', 'texto': 'Asesorar y representar a clientes en temas legales.'},  # Derecho
+            {'opcion': 'F', 'texto': 'Gestionar presupuestos y análisis financiero.'},  # Contabilidad y Finanzas
+            {'opcion': 'G', 'texto': 'Realizar terapias y asesorar a personas con problemas emocionales.'},  # Psicología
+            {'opcion': 'H', 'texto': 'Desarrollar y mantener sistemas informáticos.'},  # Tecnología de la Información
+            {'opcion': 'I', 'texto': 'Organizar eventos y coordinar servicios turísticos.'}  # Turismo y Hotelería
+        ]}]
 
     context = {'preguntas': preguntas}  # EH aquí está el cambio
 
