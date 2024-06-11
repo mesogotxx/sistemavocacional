@@ -35,10 +35,10 @@ def pages(request):
 
 @login_required(login_url="/login/")
 def perfil(request):
-    segment = 'Perfil.html'
+    segment = 'index.html'
     context = {'segment': segment}
 
-    html_template = loader.get_template('home/perfil.html')
+    html_template = loader.get_template('home/index.html')
     return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")

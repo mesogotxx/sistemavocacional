@@ -1,40 +1,44 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Login {% endblock %} 
+{% block title %} Login {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+
+{% endblock stylesheets %}
 
 {% block content %}
 
-  <div class="row justify-content-center">
-    <div class="col-md-5">
-      <div class="card">
-        <div class="card-header card-header-primary">
-          <h4 class="card-title">
-            Ingresar
+<body class="bodylogin" style="overflow: hidden;">
+  <div class="login-panel">
+    <div class="">
+      <div class="">
+        <div class="title-cointainer">
+          <h4 class="titulo">
+            Conectate!
+          </h4>
+          <h4 class="texto">
+            {% if msg %}
+            <span class="text-danger">{{ msg | safe }}</span>
+            {% else %}
+            Inicia sesión para continuar
+            {% endif %}
           </h4>
         </div>
-        <div class="card-body">
+        <div class="">
 
-          <h6 class="card-category">
-              {% if msg %}
-                <span class="text-danger">{{ msg | safe }}</span>
-              {% else %}
-                Ingresa tus credenciales
-              {% endif %}  
-          </h6>
-          
+
+
           <br />
 
           <form role="form" method="post" action="">
-              
-            {% csrf_token %} 
+
+            {% csrf_token %}
 
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label class="bmd-label-floating">Usuario</label>
+                  <label class="textol">Correo Electronico</label>
                   {{ form.username }}
                 </div>
               </div>
@@ -45,17 +49,22 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label class="bmd-label-floating">Contraseña</label>
+                  <label class="textol">Contraseña</label>
                   {{ form.password }}
+
                 </div>
+                <a class="textol1">¿Haz olvidado tu contraseña?</a>
               </div>
+
             </div>
 
             <br />
+            <div>
+              <button type="submit" name="login" class="botonlogin" id="login-button">Iniciar sesión!</button>
 
-            <button type="submit" name="login" class="btn btn-primary pull-left">Ingresar</button>
+            </div>
 
-            
+
 
             <div class="clearfix"></div>
 
@@ -65,7 +74,8 @@
     </div>
   </div>
 
-{% endblock content %}
+</body>
+  {% endblock content %}
 
-<!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+  <!-- Specific Page JS goes HERE  -->
+  {% block javascripts %}{% endblock javascripts %}
