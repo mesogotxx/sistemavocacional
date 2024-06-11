@@ -94,7 +94,7 @@ def seccion(request):
 def notas(request):
     context = {'segment': 'notas'}
     return render(request, 'home/notas.html', context)
-=======
+
 def notas(request):
     segment = 'notas.html'
     context = {'segment': segment}
