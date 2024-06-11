@@ -131,4 +131,33 @@ document.addEventListener('DOMContentLoaded', function () {
     const simpleBar = new simpleBar(document.getElementById('parent-container'));
 });
 
+// Obtener referencia al botón y al contenedor
+const toggleButton = document.getElementById('toggleButton');
+const navbarNav = document.getElementById('navbarNav');
+
+// Función para mostrar u ocultar el navbarNav
+function toggleNavbar() {
+    navbarNav.style.display = navbarNav.style.display === 'none' ? 'flex' : 'none';
+}
+
+// Agregar evento al botón para mostrar/ocultar navbarNav
+toggleButton.addEventListener('click', toggleNavbar);
+
+// Función para mostrar u ocultar navbarNav según el tamaño de la pantalla
+function checkScreenWidth() {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth <= 480) {
+        navbarNav.style.display = 'flex';
+    } else {
+        navbarNav.style.display = 'none';
+    }
+}
+
+// Ejecutar la función al cargar la página
+checkScreenWidth();
+
+// Agregar evento al cambiar el tamaño de la ventana
+window.addEventListener('resize', checkScreenWidth);
+
 
