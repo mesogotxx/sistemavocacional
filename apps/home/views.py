@@ -68,6 +68,7 @@ def seccion(request):
         'Terceros medios': [],
         'Cuartos medios': [],
     }
+    Alumnos = Alumno.objects.all()
     for año in años:
         nombre = año.nombre
         if nombre.startswith('Primero medio'):
@@ -79,7 +80,7 @@ def seccion(request):
         elif nombre.startswith('Cuarto medio'):
             grupos['Cuartos medios'].append(nombre)
 
-    context = {'segment': 'alumnos', 'grupos': grupos}
+    context = {'segment': 'alumnos', 'grupos': grupos, 'alumnos': alumnos}
     return render(request, 'home/seccion.html', context)
 
 @login_required(login_url="/login/")

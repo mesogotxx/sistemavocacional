@@ -5,7 +5,7 @@ from .admin import admin_site
 urlpatterns = [
     path('admin/', admin_site.urls),
     # The home page
-    path('', views.perfil, name='home'),
+    path('', views.pages, name='home'),
     path('seccion/', views.seccion, name='seccion'),
     path('alumnos/', views.alumnos, name='alumnos'),
     path('notas/', views.notas, name='notas'),
