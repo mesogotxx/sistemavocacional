@@ -1,0 +1,960 @@
+/*Custom styles PAVI. */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+
+}
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden
+}
+
+.simplebar-scrollbar {
+    background-color: transparent; /* Color de la barra de desplazamiento */
+    border: none;
+    size: 3px; /* Ancho de la barra de desplazamiento */
+    border-radius: 6px; /* Bordes redondeados de la barra de desplazamiento */
+    position: fixed; /* Posición fija */
+    right: -1; /* Alineado al borde derecho */
+}
+
+.simplebar-scrollbar:before {
+    background-color: #ee6d4d; /* Color de la barra de desplazamiento */
+    border-radius: 6px; /* Bordes redondeados de la barra de desplazamiento */
+}
+
+.simplebar-scrollbar:hover {
+    background-color: #ee6d4d; /* Color de la barra de desplazamiento */ /* Bordes redondeados de la barra de desplazamiento */
+}
+
+
+ 
+
+.background {
+    position: relative;
+    background-image: radial-gradient(circle at center, transparent 30%, rgb(14, 25, 49) 98%), url('assets/svg/bg.svg');
+    height: 100%;
+    width: 100%;
+    z-index: -20;
+    background-attachment: fixed;
+}
+
+.login-panel {
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    padding: 20px;
+    margin-top: 22%;
+    box-sizing: border-box;
+    background-color: transparent; /* Color azul marino con 60% de opacidad */
+    border-radius: 10px;
+    z-index: 20;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .login-panel {
+        width: 80%; /* Ajustar el ancho al 80% del viewport */
+        margin-top: 85%; /* Reducir el margen superior */
+        padding: 10px; /* Reducir el relleno */
+        font-size: 14px; /* Ajustar el tamaño de fuente */
+    }
+
+    .footer{
+        text-align: center;
+    }
+    .logo-img {
+        scale: 300%;
+        
+    }
+    .form-control {
+        padding:13px;
+        font-size:1em;
+        width: 110%;
+    }
+
+    .textol1{
+        font-size: 1em;
+
+    }
+    .textol{
+        font-size: 1em;
+    }
+
+    .botonlogin{
+        padding-top:20px;
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .loader{
+        scale: 2;
+    }
+
+    .logo-img2{
+        width: 13%;
+    }
+
+    .profile-content {
+        left: 7%;
+    
+        height: 20%; /* Reducir la altura a la mitad */
+        margin-top: 10%; /* Ajustar el margen superior para centrarlo */
+    }
+
+    .navbarNav{
+        width: 50%;
+    }
+
+   
+
+
+    
+
+    
+}
+
+.bodylogin {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    
+}
+
+
+.loginbg {
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    fill: #123456; /* Cambia esto al color que desees */
+    filter: blur(4px);
+    z-index: -19;
+    animation: moveRotate 5s linear infinite; /* Ajusta esto al nivel de desenfoque que desees */
+}   
+
+.lensflare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 60%;
+    background: url('loginbg.png') no-repeat center center fixed; 
+    z-index: -19;
+    filter: blur(10px);
+    opacity: 0.8;
+}
+
+
+
+
+.titulo {
+    text-align: center;
+    margin-bottom: 2em;
+    font-size: 2.5em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: -2%;
+}
+
+
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+}
+
+.texto {
+    
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-weight: 200;
+    text-align: center;
+    
+}
+
+.textol {
+    font-size: 0.8em;
+    font-weight: 200;
+    text-align: center;
+    padding-bottom: 20px;
+    letter-spacing: 0.1em;
+
+}
+
+.textol1 {
+    display: block;
+    font-size: 0.7em;
+    font-weight: 200;
+    text-align: center;
+    padding-bottom: 20px;
+    letter-spacing: 0.07em;
+
+}
+
+
+.form-control {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    font-weight: 300;
+    text-align: center;
+    outline: none;
+    width: 100%;
+    border-radius: 10px;
+    height: 90%;
+    padding: 20px;
+    border: none;
+    box-shadow: 3px 3px 0px rgba(51, 2, 51, 0.116);
+    box-sizing: border-box;
+    background: linear-gradient(to right, #b2dcdd, rgba(136, 121, 145, 0.329));
+    color: white !important;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.1em;
+}
+.form-control::placeholder { /* Selecciona los marcadores de posición de los elementos con la clase .form-control */
+    color: white; /* Cambia el color del texto del marcador de posición a blanco */
+}
+
+@keyframes border-color-change {
+    0%   {box-shadow: 0 0 0 2px #3D5A80;}
+    20%  {box-shadow: 0 0 0 2px #EE6C4D;}
+    50% {box-shadow: 0 0 0 2px white;}
+    80% {box-shadow: 0 0 0 2px #ee6c4d;}
+    100% {box-shadow: 0 0 0 2px #3d5a80;}
+}
+
+.form-control:focus {
+    outline: none;
+    animation: border-color-change 3s infinite;
+}
+
+.form-control:hover {
+    box-shadow: 0 0 0 2px #3D5A80;
+    transition: border-color-change 3s infinite;
+    animation: border-color-change 3s infinite;
+}
+
+.botonlogin {
+    margin-top: 10px;
+    font-size: 1em;
+    font-weight: 500;
+    text-align: center;
+    outline: none;
+    width: 100%;
+    border-radius: 10px;
+    height: 90%;
+    padding: 10px;
+    border: none;
+    box-sizing: border-box;
+    background:  #EE6C4D;
+    color: white !important;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: 0.5s, box-shadow 0.5s;
+    box-shadow: 3px 3px 0px rgba(51, 2, 51, 0.116);
+    z-index: 10;
+}
+
+.botonlogin:hover {
+    transform: scale(1.1); /* Agrandar el botón un 10% */
+    box-shadow: 5px 5px 0px rgba(51, 2, 51, 0.116); /* Agrandar la sombra de la caja */
+}
+
+.footer {
+    font-family: "Montserrat", sans-serif;
+    position: fixed;
+    width: 100%;
+    text-align: flex-start;
+    color: white !important;
+    font-size: 0.5em;
+    font-weight: 100;
+    padding: 10px;
+    letter-spacing: 0.1em;
+    bottom: 0;
+    left: 0;
+    opacity: 0.8;
+}
+
+
+.footer a {
+    color: white; /* Cambia el color del enlace a blanco */
+    text-decoration: none; /* Elimina la línea debajo del enlace */
+}
+
+.footer a:hover {
+    color: orange; /* Cambia el color del enlace a naranja al pasar el cursor sobre él */
+}
+
+.sidebar {
+    position: fixed;
+    top:10vh;
+    left: -2vh;
+    box-shadow: #b2dcdd 0px 0px 10px;
+    text-decoration: none;
+    color: white;
+    align-items: flex-start;
+    font-weight: 300;
+    font-family: "Montserrat", sans-serif;
+    width: 35vh;
+    border-radius: 20px;
+    background-color: #3d5a8091;
+    z-index: 10000; /* Asegura que esté por encima de otros elementos */
+    box-shadow: 5px 5px 0px rgba(51, 2, 51, 0.116);
+    height: 80vh  ;
+    transform: translateX(-100%); /* Oculta la barra lateral por defecto */
+    transition: transform 0.3s ease-out; /* Anima la transición */
+}
+
+
+
+.sidebar.active {
+    transform: translateX(0); /* Muestra la barra lateral cuando tiene la clase active */
+}
+
+
+
+
+
+.sidebar .logo {
+    padding: 15px;
+    text-align: center;
+}
+.sidebar .nav {
+    margin-top: 20px;
+    justify-content: flex-start !important;
+}
+.sidebar .nav .nav-item .nav-link {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-decoration: none;
+}
+.sidebar .nav .nav-item .nav-link i {
+    margin-right: 10px;
+    justify-content: flex-start;
+}
+.sidebar .nav .nav-item.active a {
+    color: #EE6C4D;
+    font-weight: bold       ;
+}
+
+.sidebar .nav .nav-item .nav-link {
+    display: flex;
+    align-items: flex-start;
+    text-decoration: none;
+    color: white; /* Color de texto blanco */
+}
+
+.sidebar .nav .nav-item .nav-link:hover {
+    color: orange; /* Color de texto naranja al pasar el ratón por encima */
+}
+
+.navbar {
+    position: fixed;
+    z-index: 10000; /* Asegura que el navbar esté por encima de otros elementos */
+}
+
+.sidebar .nav {
+    list-style-type: disc; /* Estilo de lista con viñetas */
+    padding-left: 20px; /* Espacio a la izquierda para las viñetas */
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    height: auto; /* Cambia a auto */
+    overflow-y: auto; /* Permite el desplazamiento */
+}
+
+.nav-item {
+    display: flex;
+    flex: 1;
+
+}
+
+.sidebar-footer{
+    scale: -1 !important;
+}
+
+
+.nav-link {
+    display: block;
+    width: 100%; /* O especifica un ancho fijo, como 200px */
+    height: 4em; /* Ajusta esto al tamaño que prefieras */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: flex-start; /* Centra el texto y el icono */
+}
+
+.burger-button {
+    position: absolute; /* Necesario para que z-index funcione */
+    z-index: 10001; /* Un valor mayor que el del navbar */
+    /* tus otros estilos */
+    font-size: 24px; /* Cambia esto al tamaño que prefieras */
+    background: transparent;
+    border: none;
+    transition: background-position 0.5s;
+    cursor: pointer;
+    overflow: hidden;
+    color: #ffffff; /* Cambia esto al color que prefieras */
+}
+
+
+.burger-checkbox {
+    display: none; /* Oculta el checkbox */
+}
+.burger-button:focus {
+    outline: none;
+}
+.burger-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 200% auto;
+    background-image: linear-gradient(45deg, #ff9d00, #ff5500);
+    transition: transform 0.5s;
+    z-index: -1;
+    transform: translateX(-100%);
+    pointer-events: none; /* Agregado para permitir clics a través del pseudo-elemento */
+}
+.burger-button:hover::before {
+    transform: translateX(0); /* cambia la posición del fondo al pasar el ratón */
+}
+.logo {
+    position: relative; /* Esto es necesario para que .logo-img se posicione en relación a .logo */
+}
+.logo-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -18;
+    width: 50%; /* Ajusta esto al ancho que prefieras */
+    height: auto; /* Esto mantendrá la relación de aspecto de la imagen */
+    display: block; /* Esto eliminará cualquier espacio extra alrededor de la imagen */
+}
+
+.logo-img2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -18;
+    width: 50%; /* Ajusta esto al ancho que prefieras */
+    height: auto; /* Esto mantendrá la relación de aspecto de la imagen */
+    display: block; /* Esto eliminará cualquier espacio extra alrededor de la imagen */
+}
+
+
+/* Estilos para la pantalla de carga */
+#loading-screen1 {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at center, transparent 30%, rgb(14, 25, 49) 98%), url('assets/svg/bg.svg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    clip-path: circle(100%);
+    animation: fade-in 0.5s;
+}
+.loader {
+    width: 6%;
+    height: auto;
+}
+
+#loading-screen {
+    white-space: nowrap;
+}
+/* Estilos para el texto de carga */
+#loading-screen {
+    font-size: 1em;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    display: inline-block;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+
+
+#content {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 2s ease-in-out, opacity 2s ease-in-out;
+}
+
+
+/* Estilos generales para la barra de navegación */
+.navbar {
+    background-color: #333; /* Cambia esto al color que prefieras */
+}
+
+/* Estilos para los elementos de la barra de navegación */
+.nav-item {
+    margin-right: 20px; /* Añade un margen a la derecha de cada elemento */
+}
+
+/* Estilos para los enlaces de la barra de navegación */
+.nav-link {
+    color: #fff; /* Cambia esto al color que prefieras */
+}
+
+/* Estilos para los enlaces de la barra de navegación al pasar el ratón */
+.nav-link:hover {
+    color: #ddd; /* Cambia esto al color que prefieras */
+}
+
+/* Estilos para los menús desplegables de la barra de navegación */
+.dropdown-menu {
+    background-color: #333; /* Cambia esto al color que prefieras */
+}
+
+/* Estilos para los enlaces de los menús desplegables */
+.dropdown-item {
+    color: #fff; /* Cambia esto al color que prefieras */
+}
+
+/* Estilos para los enlaces de los menús desplegables al pasar el ratón */
+.dropdown-item:hover {
+    color: #ddd; /* Cambia esto al color que prefieras */
+    background-color: #555; /* Cambia esto al color que prefieras */
+}
+
+/* Estilos para el formulario de búsqueda */
+.form-inline .form-control {
+    margin-right: 10px; /* Añade un margen a la derecha del campo de búsqueda */
+}
+
+/* Estilos generales para la navbar */
+#navbarNav {
+    background-color: #33333300;
+    position: absolute;
+    color: #fff;
+    padding: 10px;
+    font-weight: 400;
+    top: 0%;
+    right: 0   ;
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    z-index: 10000;
+}
+
+/* Estilo del formulario de búsqueda */
+#navbarNav form {
+    display: flex;
+    align-items: center;
+}
+
+#navbarNav button {
+    background-color: #55555500;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+/* Estilos de la lista de navegación */
+#navbarNav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: left;
+}
+
+#navbarNav li {
+    margin: 0 10px;
+    position: relative;
+}
+
+#navbarNav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 80%;
+}
+
+
+
+/* Estilos para los dropdowns */
+#navbarNav li div {
+    display: none;
+    position: absolute;
+    background-color: #ee6d4da2;
+    box-shadow: 3px 3px 0px rgba(51, 2, 51, 0.116);
+    z-index: 1;
+    top: 20px;
+    right: 75%; /* Cambiado de 'left: 0' a 'right: 100%' */
+    border-radius: 4px;
+    padding: 10px;
+}
+
+#navbarNav li:hover div {
+    display: block;
+}
+
+#navbarNav li div a {
+    color: #fff;
+    padding: 5px 10px;
+    display: block;
+    text-decoration: none;
+}
+
+#navbarNav li div a:hover {
+    background-color: #323f64;
+    scale: 1.1;
+}
+
+/* Estilo del contador de notificaciones */
+#navbarNav #notificationsDropdown span {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    transform: translateX(50%);
+}
+
+
+
+.searchbutton {
+    /* Estilos iniciales del botón */
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    padding: 15px ;
+    font-size: 10%;
+    transition: background-color 0.3s ease;
+}
+
+.searchflex{
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+}
+
+.searchbar {
+    flex: 1; /* Permite que la barra de búsqueda ocupe el espacio disponible */
+    padding: 5px; /* Añade relleno alrededor del input */
+    font-size: 0.8rem; /* Tamaño de fuente */
+    border-radius: 5px; /* Borde redondeado */
+    margin-right: 10px; /* Espacio a la derecha del input */
+    font-family: 'Montserrat', sans-serif; /* Fuente */
+    border: none;
+}
+
+.searchbar:focus {
+    outline: none; /* Quita el borde de enfoque por defecto */
+    animation: border-color-change 3s infinite;
+}
+
+
+
+
+.searchbutton :hover {
+    /* Estilos del botón cuando el mouse está sobre él */
+    background-color: #EE6C4D;
+    scale: 1.3;
+    border-radius: 4px;
+}
+#navbarNav a :hover {
+    /* Estilos del botón cuando el mouse está sobre él */
+    background-color: #EE6C4D;
+    scale: 1.3;
+    border-radius: 4px;
+}
+
+
+
+
+.profile-container {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centra los elementos internamente horizontalmente */
+    align-items: center; /* Centra los elementos internamente verticalmente */
+    border-radius: 6px;
+    max-width: 80%;
+    height: 80%;
+    width: 60%;
+    padding: 20px;
+    transition: max-width 0.5s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    border: #4CAF50 2px solid;
+    z-index: 10;
+    margin: 10px;
+}
+.navlistbar{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.profile-content {
+    position: relative; /* Posición relativa para alinear correctamente los pseudo-elementos */
+    display: flex; /* Ensure flexbox is used */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 80%; 
+    min-width: 200px;
+    background: linear-gradient(to bottom, rgba(253, 87, 46, 1), rgba(253, 87, 46, 0.767), rgba(253, 87, 46, 0)); /* Gradiente desde #fd572ea2 (opaco) hasta transparente */
+    border-radius: 10px;
+    transition: transform 0.4s ease-in-out, height 0.4s ease-in-out; /* Add transition */
+    max-height: 80%; /* Limit height to enable scrolling */
+    min-height: 60;
+
+
+
+    /* Pseudo-elemento para la sombra con gradiente */
+    &::before {
+        content: ''; /* Contenido vacío requerido para pseudo-elemento */
+        position: absolute; /* Posición absoluta para superponer encima del contenedor */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom,rgba(44, 1, 73, 0.95), rgba(62, 3, 117, 0)); /* Gradiente para la sombra */
+        border-radius: 10px; /* Misma bordes que el contenedor principal */
+        z-index: -1; /* Coloca detrás del contenido principal */
+        transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out; /* Transición para la opacidad */
+        opacity: 0; /* Inicialmente oculto */
+    }
+
+    /* Mostrar pseudo-elemento al hacer hover */
+    &:hover::before {
+        opacity: 1; /* Mostrar sombra al hacer hover */
+    }
+}
+.profile-content:hover {
+    transform: scale(1.1); /* Escala del 110% al hacer hover */
+    height: 120%; /* Aumento de la altura al hacer hover */
+}
+
+.parent-container {
+    display: none;
+    
+}
+
+.perfil-page {
+    position: relative  ;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 99.7vw;
+    height: 95vh;
+    margin: 0 auto;
+    top: 0  ;
+    border: #4CAF50 2px solid;
+    overflow-y: hidden; /* Cambia la altura a 80% del alto de la ventana */
+}
+
+@media screen and (max-width: 480px) {
+    #navbarNav {
+        display: flex;
+    }
+}
+
+
+.parent-container {
+    position: relative;
+    border-radius: 4px;
+    width: 95%;
+    padding: 15px;
+    height: 70vh;
+    margin: 0 auto  ;
+    background:  transparent;
+}
+  
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-info-details {
+    text-align: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+  }
+  #edit-profile-btn {
+    position: absolute;
+    margin-left: 20px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    
+  }
+
+  #edit-profile-btn:hover{
+    scale: 1.2;
+    color: #fcae9b;
+  }
+
+  .profile-pic {
+    width: 150px; /* Ajusta este valor para cambiar el tamaño de la imagen */
+    height: 150px; /* Ajusta este valor para cambiar el tamaño de la imagen */
+    clip-path: circle(50% at center); /* Recorta en forma de círculo */
+    object-fit: cover; /* Asegura que la imagen cubra todo el espacio disponible sin distorsionarse */
+}
+  
+
+  .form-editor-profile {
+    display: flex;
+    flex-direction: column; /* Alinear los divs en columna */
+}
+
+.form-editor-profile div {
+    position: relative;
+    display: flex;
+    align-items: center; /* Centrar verticalmente los elementos dentro de cada div */
+    margin: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out; /* Transición para el cambio de tamaño, sombra y fondo */
+}
+
+.form-editor-profile div:focus-within {
+    transform: scale(1.05) translateY(-10px);
+    z-index: 30;
+    box-shadow: 3px 3px 0px rgba(51, 2, 51, 0.116);
+    background: #0b27427e;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    text-shadow:1px 1px 2px #3c00644b;
+}
+
+.form-editor-profile div input,
+.form-editor-profile div textarea {
+    flex: 1; /* Ocupa todo el espacio disponible horizontalmente */
+    text-align: center;
+    outline: none;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+    margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 3px 3px 0px rgba(51, 2, 51, 0.116);
+    box-sizing: border-box;
+    background: linear-gradient(to right, #b2dcdd, rgba(136, 121, 145, 0.329));
+    color: white !important;
+    letter-spacing: 0.1em;
+    margin: 0 10px; /* Margen a los lados de cada input/select/textarea */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transición para el cambio de tamaño y sombra */
+}
+
+.form-editor-profile div input:focus,
+.form-editor-profile div textarea:focus {
+    padding-top: 20px ;
+    padding-bottom: 20px ;
+    
+}
+
+
+/* Estilos del contenedor del botón */
+.button-container {
+    display: flex;
+    font-weight: 500 !important;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center;     /* Centrar verticalmente */
+    height: 10vh;           /* Ajustar la altura del contenedor según sea necesario */
+  }
+  
+  /* Estilos del botón */
+  .guardar-button {
+    background-color: #EE6C4D; /* Color de fondo del botón */
+    color: white;              /* Color del texto */
+    border: none;      
+    font-family: 'Montserrat', sans-serif;        /* Sin borde */
+    border-radius: 4px;        /* Bordes redondeados */
+    padding: 10px 20px;        /* Espaciado interno del botón */
+    font-size: 16px;           /* Tamaño de la fuente */
+    cursor: pointer;           /* Cambiar el cursor al pasar sobre el botón */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.452); /* Sombra del botón */
+    transition: scale 0.2s; /* Transición para cambios de color y sombra */
+  }
+  
+  .guardar-button:hover {
+    scale: 1.2;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Sombra al pasar el ratón */
+  }
+  
+  .guardar-button:active {
+    background-color: #03dac5; /* Color de fondo al hacer clic */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Sombra al hacer clic */
+  }
+  
+  .guardar-button:focus {
+    outline: none; /* Quitar el borde de enfoque por defecto */
+    box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.5); /* Añadir un contorno de enfoque */
+  }
+  
+
+
+
+ 
+  

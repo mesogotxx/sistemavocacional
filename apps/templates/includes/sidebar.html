@@ -1,11 +1,14 @@
+{% load static %}
+<button id="burger-button" class="burger-button material-icons">menu</button>
+
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
-      <div class="logo">
-        <a target="_blank" rel="noopener noreferrer" 
-            class="simple-text logo-normal">
-          Sistema Vocacional
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
+    <div class="logo">
+        <a target="_blank" rel="noopener noreferrer" class="simple-text logo-normal">
+        <img class="logo-img2" src="{% static 'css/pavi.svg' %}" alt="Logo">
+    </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <br><br>
         <ul class="nav">
         {% if request.user.is_authenticated %}
           <li class="nav-item {% if 'perfil' in segment %} active {% endif %}">
@@ -50,8 +53,48 @@
 
         {% else %}       
 
+            <li class="nav-item {% if 'perfil' in segment %} active {% endif %}">
+                <a class="nav-link" href="/">
+                    <i class="material-icons">person</i>
+                    <p>Perfil</p>
+                </a>
+            </li>
+            <li class="nav-item {% if 'alumnos' in segment %} active {% endif %}">
+                <a class="nav-link" href="/alumnos.html">
+                    <i class="material-icons">content_paste</i>
+                    <p>Alumnos</p>
+                </a>
+            </li>
+            <li class="nav-item {% if 'notas' in segment %} active {% endif %}">
+                <a class="nav-link" href="/notas.html">
+                    <i class="material-icons">library_books</i>
+                    <p>Notas</p>
+                </a>
+            </li>
+            <li class="nav-item {% if 'testvocacional' in segment %} active {% endif %}">
+                <a class="nav-link" href="/testvocacional.html">
+                    <i class="material-icons">bubble_chart</i>
+                    <p>Test Vocacional</p>
+                </a>
+            </li>
+            <li class="nav-item {% if 'cuestionario' in segment %} active {% endif %}">
+                <a class="nav-link" href="/cuestionario.html">
+                    <i class="material-icons">help</i>
+                    <p>Cuestionario</p>
+                </a>
+            </li>
+            <li class="nav-item active-pro">
+                <a class="nav-link" href="{% url 'logout' %}">
+                    <i class="material-icons">directions_run</i>
+                    <p>Salir</p>
+                </a>
+            </li>
+           
+            
+            
+        {% else %}
+            <!-- Contenido para usuarios no autenticados, si es necesario -->
         {% endif %}
         </ul>
-      </div>
-
+    </div>
     </div>

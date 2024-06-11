@@ -15,7 +15,5 @@
     "author": "Creative-Tim / AppSeed.us",
     "engines": {
         "node": ">=10.0.0"
-    },
-    "dependencies": {},
-    "devDependencies": {}
+    }
 }

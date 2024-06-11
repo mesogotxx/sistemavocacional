@@ -8,56 +8,81 @@
   <link rel="icon" type="image/png" href="/static/assets/img/logoCSA.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-material">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
 
-  <title>
-    Sistema Vocacional - {% block title %}{% endblock %} | SSA
-  </title>
 
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
+
   <!-- CSS Files -->
-  <link href="/static/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="/static/assets/demo/demo.css" rel="stylesheet" />
 
-  <!-- Specific Page CSS goes HERE  -->
-  {% block stylesheets %}{% endblock stylesheets %}
 
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/customstyles.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+  <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+  <!-- or -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
+  <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 </head>
 
-<body class="">
-  <div class="wrapper ">
+<body class="background">
 
-    {% include 'includes/sidebar.html' %}
+  <div id="loading-screen1">
+    <img class="logo-img" src="{% static 'css/loginbg.png' %}" alt="logo">
+    <img class="loader" src="{% static 'css/loading/loading.svg' %}" alt="Cargando...">
+    <p id="loading-screen">Cargando...</p>
+  </div>
+  <div id="content" style="display:none;">
+    {% if not request.user.is_authenticated %}
+    <img class="loginbg" src="{% static 'css/1.svg' %}" alt="logo">
+    <img class="loginbg" src="{% static 'css/1.svg' %}" alt="logo">
+    <img class="loginbg" src="{% static 'css/2.svg' %}" alt="logo">
+    <img class="loginbg" src="{% static 'css/2.svg' %}" alt="logo">
+    <img class="loginbg" src="{% static 'css/3.svg' %}" alt="logo">
+    <img class="loginbg" src="{% static 'css/3.svg' %}" alt="logo">
+    <img class="logo-img" src="{% static 'css/loginbg.png' %}" alt="logo">
+    {% endif %}
+    
+    <div>
 
-    <div class="main-panel">
 
-      {% include 'includes/navigation.html' %}
+      <div class="wrapper ">
 
-      <!-- End Navbar -->
-      <div class="content">
-        <div class="container-fluid">
 
-          {% block content %}{% endblock content %}
 
+        <div>
+          {% if user.is_authenticated %}
+          {% include 'includes/sidebar.html' %}
+          {% endif %}
+          {% include 'includes/navigation.html' %}
+
+          <!-- End Navbar -->
+          <div>
+            <div>
+
+              {% block content %}{% endblock content %}
+
+            </div>
+          </div>
         </div>
+
+        {% include 'includes/footer.html' %}
+
       </div>
-
-      {% include 'includes/footer.html' %}
-
     </div>
+
+
   </div>
 
-  {% include 'includes/fixed-plugin.html' %}
 
-  {% include 'includes/scripts.html' %}
 
-  {% include 'includes/scripts-sidebar.html' %}
-  
-  <!-- Specific Page JS goes HERE  -->
-  {% block javascripts %}{% endblock javascripts %}
-  
+  <script type="module" src="{% static 'css/blob.js' %}" defer></script>
+
 </body>
+
 </html>
