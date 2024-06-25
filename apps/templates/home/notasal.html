@@ -1,0 +1,57 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Registrar notas {% endblock %}
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <h1>Registrar Notas</h1>
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Materia</th>
+                    <th>Evaluación 1</th>
+                    <th>Evaluación 2</th>
+                    <th>Nueva Evaluación</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dato in datos_materias %}
+                <tr>
+                    <td>{{ dato.materia }}</td>
+                    <td><input type="number" name="{{ dato.materia }}_evaluacion_1" value="{{ dato.notas.0 }}" min="1" max="7" step="0.1"></td>
+                    <td>{% if dato.notas|length > 1 %}<input type="number" name="{{ dato.materia }}_evaluacion_2" value="{{ dato.notas.1 }}" min="1" max="7" step="0.1">{% else %}No hay segunda nota{% endif %}</td>
+                    <td><input type="number" name="{{ dato.materia }}_nueva_evaluacion" min="1" max="7" step="0.1"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="button-container">
+            <button type="submit" class="button">Registrar Notas</button>
+        </div>
+    </form>
+    <h2>Promedios por Área de Estudio</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Área de Estudio</th>
+                <th>Promedio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for area, promedio in promedios_areas.items %}
+            <tr>
+                <td>{{ area }}</td>
+                <td>{{ promedio }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="button-container">
+        <a href="{% url 'analisisnota' %}" class="button">Volver al Análisis de Notas</a>
+    </div>
+{% endblock content %}
+
+{% block javascripts %}{% endblock javascripts %}

@@ -1,36 +1,37 @@
 {% extends "layouts/base.html" %}
-
 {% block title %} Test Vocacional {% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="../../../../static/assets/css/test_voca.css">
+    
 {% endblock stylesheets %}
 
-<div id="content">
-   
-
 {% block content %}
-<h1>Test de Orientación Vocacional "CSA"</h1>
-<form id="testForm" action="{% url 'testvocacional' %}" method="post">
 
-    {% csrf_token %}
-    {% for pregunta in preguntas %} <!-- bucle de preguntas -->
-        <p>{{ pregunta.pregunta }}</p> 
-        {% for respuesta in pregunta.respuestas %}<!-- bucle de respuestas -->
-            <input type="radio" name="pregunta_{{ forloop.parentloop.counter }}" value="{{ respuesta.opcion }}"> {{ respuesta.texto }}<br>
-        {% endfor %}
-        <hr>
-    {% endfor %}
-    <p><input type="submit" value="Enviar"></p>
-</form>
+<div class="container-testvoca">
+    <div id="content-testvoca">
+        <h1 >Test de Orientación Vocacional "CSA"</h1>
+        <form id="testForm" action="{% url 'testvocacional' %}" method="post">
 
-{% if resultado %}
-    <p>{{ resultado }}</p>
-{% elif error_message %}
-    <p style="color: red;">{{ error_message }}</p> <!-- mensaje de error -->
-{% endif %}
-{% endblock content %}
+            {% csrf_token %}
+            {% for pregunta in preguntas %} <!-- bucle de preguntas -->
+                <p>{{ pregunta.pregunta }}</p> 
+                {% for respuesta in pregunta.respuestas %}<!-- bucle de respuestas -->
+                    <input type="radio" name="pregunta_{{ forloop.parentloop.counter }}" value="{{ respuesta.opcion }}"> {{ respuesta.texto }}<br>
+                {% endfor %}
+                <hr>
+            {% endfor %}
+            <p><input type="submit" value="Enviar"></p>
+        </form>
+        &nbsp
+        {% if resultado %}
+            <p>{{ resultado }}</p>
+        {% elif error_message %}
+            <p style="color: red;">{{ error_message }}</p> <!-- mensaje de error -->
+        {% endif %}
+    </div>
 </div>
+{% endblock content %}
+
 
 {% block javascripts %}
 <script src="../../../../static/assets/js/core/test_voca.js"></script>

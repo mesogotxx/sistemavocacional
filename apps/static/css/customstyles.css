@@ -952,6 +952,22 @@ html, body {
     outline: none; /* Quitar el borde de enfoque por defecto */
     box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.5); /* Añadir un contorno de enfoque */
   }
+
+/* css de test vocacional*/
+.container-testvoca {
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: flex-start; /* Alinea el contenido al inicio del contenedor */
+    padding: 20px 0 20px 0; /* Opcional: añade padding superior e inferior al contenedor */
+    height: 100vh; /* Ajusta según sea necesario */
+}
+
+#content-testvoca {
+    width: 50%; /* Ajusta según sea necesario */
+    padding: 20px; /* Opcional: añade un poco de padding para espacio interior */
+    margin: 40px 0 40px 0; /* Ajusta según sea necesario: 40px arriba y abajo, 0 a los lados */
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
+}
   
 
 

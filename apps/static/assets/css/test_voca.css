@@ -1,0 +1,13 @@
+
+
+.sidebar {
+    width: 20%; /* Ajusta según el tamaño de tu sidebar */
+}
+
+.content-testvoca {
+    width: 80%; /* Ajusta según sea necesario */
+    padding-left: 20px; /* Opcional: para añadir espacio extra si es necesario */
+}
+.h1{
+    background-color: brown;
+}
