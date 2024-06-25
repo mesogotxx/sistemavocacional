@@ -1,16 +1,39 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Page User {% endblock %} 
+{% block title %} Test Vocacional {% endblock %}
 
-<!-- agregar css -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<link rel="stylesheet" href="../../../../static/assets/css/test_voca.css">
+{% endblock stylesheets %}
+
+<div id="content">
+   
 
 {% block content %}
+<h1>Test de Orientación Vocacional "CSA"</h1>
+<form id="testForm" action="{% url 'testvocacional' %}" method="post">
 
+    {% csrf_token %}
+    {% for pregunta in preguntas %} <!-- bucle de preguntas -->
+        <p>{{ pregunta.pregunta }}</p> 
+        {% for respuesta in pregunta.respuestas %}<!-- bucle de respuestas -->
+            <input type="radio" name="pregunta_{{ forloop.parentloop.counter }}" value="{{ respuesta.opcion }}"> {{ respuesta.texto }}<br>
+        {% endfor %}
+        <hr>
+    {% endfor %}
+    <p><input type="submit" value="Enviar"></p>
+</form>
 
-
-
+{% if resultado %}
+    <p>{{ resultado }}</p>
+{% elif error_message %}
+    <p style="color: red;">{{ error_message }}</p> <!-- mensaje de error -->
+{% endif %}
 {% endblock content %}
+</div>
 
-<!-- agregar js -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script src="../../../../static/assets/js/core/test_voca.js"></script>
+{% endblock javascripts %}
+
+
