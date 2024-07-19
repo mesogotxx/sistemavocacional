@@ -1716,3 +1716,79 @@ ul.materias li {
     width: fit-content; /* Ajusta el ancho del label al contenido */
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), -1px -1px 2px rgba(243, 72, 4, 0.5); /* Sombra del texto para efecto 3D */
 }
+
+@keyframes glow {
+    0% {
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+  
+  .btn-start {
+    background: linear-gradient(145deg, #ff5e62, #ff9966); /* Gradiente de fondo vibrante */
+    color: white; /* Color de texto */
+    padding: 12px 24px; /* Relleno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar como bloque en línea */
+    font-size: 18px; /* Tamaño de la fuente más grande */
+    font-weight: bold; /* Fuente en negrita */
+    margin: 10px; /* Márgenes */
+    cursor: pointer; /* Cursor de puntero */
+    border: none; /* Sin borde */
+    border-radius: 50px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+    position: relative; /* Necesario para el efecto de onda */
+    overflow: hidden; /* Para ocultar la animación de onda */
+  }
+  
+  .btn-start::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 1s ease-out;
+    pointer-events: none; /* Asegura que el efecto no interfiera con los clics */
+  }
+  
+  .btn-start:hover {
+    background: linear-gradient(145deg, #ff9966, #ff5e62); /* Gradiente invertido al pasar el cursor */
+    transform: scale(1.1); /* Efecto de escala */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+    animation: glow 1.5s infinite; /* Animación de resplandor */
+  }
+  
+  .btn-start:active {
+    background: linear-gradient(145deg, #cc3d2f, #e86a55); /* Gradiente más oscuro al hacer clic */
+    transform: scale(0.95); /* Efecto de escala al hacer clic */
+    animation: none; /* Desactivar animación al hacer clic */
+  }
+  
+  .admin-panel-btn {
+    position: fixed; /* Fijo en la página */
+    top: 10px; /* A 10px de la parte superior */
+    right: 10px; /* A 10px de la derecha */
+    z-index: 1000; /* Asegura que el botón esté encima de otros elementos */
+  }

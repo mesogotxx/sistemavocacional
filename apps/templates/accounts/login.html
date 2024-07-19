@@ -4,18 +4,21 @@
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
-
 {% endblock stylesheets %}
 
 {% block content %}
-
 <body class="bodylogin" style="overflow: hidden;">
+  <!-- Botón para entrar al panel de administración -->
+  <a href="{% url 'admin:index' %}" class="btn-start admin-panel-btn">
+    Administración
+  </a>
+  
   <div class="login-panel">
     <div class="">
       <div class="">
         <div class="title-cointainer">
           <h4 class="titulo">
-            Conectate!
+            Conéctate!
           </h4>
           <h4 class="texto">
             {% if msg %}
@@ -27,18 +30,14 @@
         </div>
         <div class="">
 
-
-
           <br />
 
           <form role="form" method="post" action="">
-
             {% csrf_token %}
-
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label class="textol">Correo Electronico</label>
+                  <label class="textol">Correo Electrónico</label>
                   {{ form.username }}
                 </div>
               </div>
@@ -51,23 +50,17 @@
                 <div class="form-group">
                   <label class="textol">Contraseña</label>
                   {{ form.password }}
-
                 </div>
-                <a class="textol1">¿Haz olvidado tu contraseña?</a>
+                <a class="textol1">¿Has olvidado tu contraseña?</a>
               </div>
-
             </div>
 
             <br />
             <div>
               <button type="submit" name="login" class="botonlogin" id="login-button">Iniciar sesión!</button>
-
             </div>
 
-
-
             <div class="clearfix"></div>
-
           </form>
         </div>
       </div>
@@ -75,7 +68,7 @@
   </div>
 
 </body>
-  {% endblock content %}
+{% endblock content %}
 
-  <!-- Specific Page JS goes HERE  -->
-  {% block javascripts %}{% endblock javascripts %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
