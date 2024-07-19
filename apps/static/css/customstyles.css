@@ -27,7 +27,7 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden
 }
 
@@ -38,6 +38,8 @@ html, body {
     border-radius: 6px; /* Bordes redondeados de la barra de desplazamiento */
     position: fixed; /* Posición fija */
     right: -1; /* Alineado al borde derecho */
+    overflow: hidden;
+    
 }
 
 .simplebar-scrollbar:before {
@@ -127,9 +129,7 @@ html, body {
         margin-top: 10%; /* Ajustar el margen superior para centrarlo */
     }
 
-    .navbarNav{
-        width: 50%;
-    }
+  
 
    
 
@@ -319,18 +319,18 @@ html, body {
     position: fixed;
     top:10vh;
     left: -2vh;
-    box-shadow: #b2dcdd 0px 0px 10px;
     text-decoration: none;
     color: white;
     align-items: flex-start;
     font-weight: 300;
     font-family: "Montserrat", sans-serif;
     width: 35vh;
+    padding-bottom: 5%;
     border-radius: 20px;
     background-color: #3d5a8091;
     z-index: 10000; /* Asegura que esté por encima de otros elementos */
     box-shadow: 5px 5px 0px rgba(51, 2, 51, 0.116);
-    height: 80vh  ;
+    height: auto  ;
     transform: translateX(-100%); /* Oculta la barra lateral por defecto */
     transition: transform 0.3s ease-out; /* Anima la transición */
 }
@@ -340,6 +340,35 @@ html, body {
 .sidebar.active {
     transform: translateX(0); /* Muestra la barra lateral cuando tiene la clase active */
 }
+
+.sidebar ul{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.sidebar li {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border-radius: 5px;
+    background: transparent; /* Fondo inicial */
+    color: #000; /* Color del texto inicial */
+    position: relative;
+    overflow: hidden;
+    transition: background 0.5s ease, color 0.5s ease; /* Transición para el fondo y el color del texto */
+}
+
+.sidebar li:hover {
+    background: linear-gradient(to right, #EE6C4D, #ee6d4d00); /* Fondo con gradiente en hover */
+    color: #fff; /* Opcional: Cambia el color del texto en hover */
+}
+
+.sidebar li {
+    position: relative; /* Asegura que el contenido esté sobre el gradiente */
+    z-index: 1; /* Asegura que el contenido esté sobre el fondo */
+}
+
+
 
 
 
@@ -376,13 +405,14 @@ html, body {
 }
 
 .sidebar .nav .nav-item .nav-link:hover {
-    color: orange; /* Color de texto naranja al pasar el ratón por encima */
+    color: white;
+    font-weight: 500; /* Color de texto naranja al pasar el ratón por encima */
 }
 
-.navbar {
-    position: fixed;
-    z-index: 10000; /* Asegura que el navbar esté por encima de otros elementos */
-}
+
+
+
+
 
 .sidebar .nav {
     list-style-type: disc; /* Estilo de lista con viñetas */
@@ -573,103 +603,42 @@ html, body {
 }
 
 /* Estilos generales para la navbar */
-#navbarNav {
-    background-color: #33333300;
-    position: absolute;
-    color: #fff;
-    padding: 10px;
-    font-weight: 400;
-    top: 0%;
-    right: 0   ;
-    font-family: "Montserrat", sans-serif;
+.navigation{
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
-    height: 5vh;
-    z-index: 10000;
+    
+    width: 100%;
+    padding-right: 1%;
 }
-
-/* Estilo del formulario de búsqueda */
-#navbarNav form {
-    display: flex;
-    align-items: center;
-}
-
-#navbarNav button {
-    background-color: #55555500;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
 
 
 /* Estilos de la lista de navegación */
-#navbarNav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+.navigation ul {
     display: flex;
-    align-items: left;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
 }
 
-#navbarNav li {
-    margin: 0 10px;
-    position: relative;
-}
 
-#navbarNav a {
+.navigation li {
     color: #fff;
     text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.navigation a {
+    color: white;
 }
 
 
 
-/* Estilos para los dropdowns */
-#navbarNav li div {
-    display: none;
-    position: absolute;
-    background-color: #ee6d4da2;
-    box-shadow: 3px 3px 0px rgba(51, 2, 51, 0.116);
-    z-index: 1;
-    top: 20px;
-    right: 75%; /* Cambiado de 'left: 0' a 'right: 100%' */
-    border-radius: 4px;
-    padding: 10px;
-}
 
-#navbarNav li:hover div {
-    display: block;
-}
 
-#navbarNav li div a {
-    color: #fff;
-    padding: 5px 10px;
-    display: block;
-    text-decoration: none;
-}
-
-#navbarNav li div a:hover {
-    background-color: #323f64;
-    scale: 1.1;
-}
-
-/* Estilo del contador de notificaciones */
-#navbarNav #notificationsDropdown span {
-    background-color: #e74c3c;
-    color: #fff;
-    padding: 2px 6px;
-    border-radius: 50%;
-    font-size: 12px;
-    position: absolute;
-    top: -5px;
-    right: 0;
-    transform: translateX(50%);
-}
 
 
 
@@ -738,12 +707,7 @@ html, body {
     z-index: 10;
     margin: 10px;
 }
-.navlistbar{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
+
 
 
 .profile-content {
@@ -1686,14 +1650,262 @@ ul.materias li {
     
 }
 
+/* Para pantallas de menos de 600px (móviles en orientación vertical) */
+@media (max-width: 599px) {
+    .seccion-container {
+        justify-content: center;
+        flex-direction: column; /* Cambia la dirección del flex a columna */
+    }
+
+    .seccion-card {
+        width: 90%; /* Ocupa la mayor parte del ancho disponible */
+        height: auto; /* Ajusta la altura automáticamente según el contenido */
+        margin: 5% 0; /* Ajusta el margen verticalmente */
+    }
+
+    .seccion-card.expanded {
+        width: 90%; /* Ancho ajustado para pantallas pequeñas */
+        height: auto; /* Ajusta la altura automáticamente */
+        margin: 5% 0; /* Ajusta el margen verticalmente */
+        min-height: 40%;
+    }
+
+    .seccion-card h2 {
+        font-size: 18px; /* Ajusta el tamaño de la fuente para pantallas pequeñas */
+        padding-top: 20%; /* Ajusta el padding */
+    }
+
+    #resetBtn2 {
+        font-size: 12px; /* Ajusta el tamaño de la fuente del botón */
+        padding: 5px; /* Ajusta el padding */
+    }
+}
+
+/* Para pantallas entre 600px y 1024px (tabletas y dispositivos en orientación horizontal) */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .seccion-container {
+        flex-direction: row; /* Alinea las tarjetas en fila para pantallas medianas */
+    }
+
+    .seccion-card {
+        width: calc(45% - 20px); /* Ajusta el ancho para permitir dos tarjetas por fila */
+        height: auto; /* Ajusta la altura automáticamente según el contenido */
+        margin: 10px; /* Ajusta el margen */
+    }
+
+    .seccion-card.expanded {
+        width: 80%; /* Ancho ajustado para pantallas medianas */
+        height: auto; /* Ajusta la altura automáticamente */
+        min-height: 40%;
+    }
+
+    .seccion-card h2 {
+        font-size: 20px; /* Ajusta el tamaño de la fuente */
+        padding-top: 10%; /* Ajusta el padding */
+    }
+
+    #resetBtn2 {
+        font-size: 14px; /* Ajusta el tamaño de la fuente del botón */
+        padding: 8px; /* Ajusta el padding */
+    }
+}
+
+/* Para pantallas mayores a 1024px (pantallas de escritorio y grandes) */
+@media (min-width: 1024px) {
+    .seccion-container {
+        justify-content: center;
+        flex-direction: row; /* Mantiene la dirección del flex en fila para pantallas grandes */
+    }
+
+    .seccion-card {
+        width: calc(20% - 20px); /* Ancho ajustado para cuatro tarjetas por fila */
+        height: 200px; /* Altura fija para mantener la consistencia */
+        margin: 10px; /* Espacio entre las tarjetas */
+    }
+
+    .seccion-card.expanded {
+        width: 80%; /* Ancho ajustado para pantallas grandes */
+        height: auto; /* Ajusta la altura automáticamente */
+        min-height: 40%;
+    }
+
+    .seccion-card h2 {
+        font-size: 25px; /* Tamaño de fuente para pantallas grandes */
+        padding-top: 5%; /* Ajusta el padding */
+    }
+
+    #resetBtn2 {
+        font-size: 16px; /* Tamaño de fuente del botón */
+        padding: 10px; /* Padding estándar */
+    }
+}
+
+
+
+
 .tituloasig{
     font-size: large;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 1%;
-    margin-left: 1%;
+    position: relative;
+    margin-bottom: 1%;
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: 5% ;
+    
+    
 }
+
+.cursos-container {
+    
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    align-items: flex-start; /* Alinea los elementos al principio del contenedor verticalmente */
+    border-radius: 6px;
+    max-width: 90%;
+    height: 75%;
+    width: 80%;
+    padding: 10px; /* Añade padding para espacio interno */
+    box-sizing: border-box; /* Incluye el padding y el border en el ancho y alto total */
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    z-index: 10;
+    background: linear-gradient(to bottom, #3d5a80, #3d5a80c5, rgba(253, 87, 46, 0));
+}
+
+.card-container-cursos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que las cartas se envuelvan a la siguiente fila */
+    gap: 4%; /* Espacio entre las cartas */
+    
+    width: 100%; /* Asegura que el contenedor de cartas ocupe todo el ancho del contenedor principal */
+}
+
+.cursos-card {
+    flex: 0 0 calc(20%); /* Ajusta el ancho de las cartas para que haya 4 por fila con margen */
+    height: 200px; /* Altura fija para evitar el estiramiento */
+    background: linear-gradient(to bottom, rgba(253, 87, 46, 1), rgba(253, 87, 46, 0.692), rgb(190, 54, 20));
+    border-radius: 4%;
+    box-shadow: 10px 10px 1px -1px rgba(20, 0, 20, 0.342);
+    transition: transform 0.3s ease, height 0.3s ease, width 0.3s ease, margin 0.3s ease;
+    padding: 10px; /* Espacio interno dentro de cada carta */
+    cursor: pointer;
+    margin-bottom: 3%;
+    text-align: center;
+    font-size: large;
+    font-weight: 500;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-sizing: border-box; /* Incluye el padding y el border en el ancho y alto total */
+}
+
+.cursos-card p{
+    font-weight: 300;
+    font-size: medium;
+}
+
+.cursos-card:hover {
+    transform: scale(1.1); /* Efecto de escala en hover */
+}
+
+.cursos-card:hover {
+    transform: scale(1.1); /* Efecto de escala en hover */
+}
+
+.seccion-card:hover{
+    scale: 1.1;
+}
+
+/* Para pantallas de menos de 600px (móviles en orientación vertical) */
+@media (max-width: 599px) {
+    .tituloasig {
+        font-size: 1.5em; /* Reduce el tamaño de la fuente para pantallas pequeñas */
+        letter-spacing: 2%; /* Ajusta el espaciado de las letras */
+    }
+
+    .cursos-container {
+        width: 100%; /* Ocupa todo el ancho de la pantalla */
+        height: 75vh; /* Ajusta la altura para permitir el scroll */
+        overflow-y: auto; /* Permite el scroll vertical */
+        overflow-x: hidden; /* Evita el scroll horizontal */
+    }
+
+    .card-container-cursos {
+        gap: 2%; /* Reduce el espacio entre las cartas */
+        flex-direction: column; /* Coloca las cartas en una sola columna */
+    }
+
+    .cursos-card {
+        flex: 0 0 calc(100% - 10px); /* Ocupa todo el ancho disponible */
+        height: 150px; /* Ajusta la altura de las cartas */
+    }
+
+    .cursos-card p {
+        font-size: small; /* Reduce el tamaño de la fuente en las cartas */
+    }
+}
+
+/* Para pantallas entre 600px y 1024px (tabletas y dispositivos en orientación horizontal) */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .tituloasig {
+        font-size: 1.8em; /* Ajusta el tamaño de la fuente para tabletas */
+        letter-spacing: 3%; /* Ajusta el espaciado de las letras */
+    }
+
+    .cursos-container {
+        width: 90%; /* Ajusta el ancho del contenedor */
+        height: 75vh; /* Ajusta la altura para permitir el scroll */
+        overflow-y: auto; /* Permite el scroll vertical */
+        overflow-x: hidden; /* Evita el scroll horizontal */
+    }
+
+    .card-container-cursos {
+        gap: 3%; /* Ajusta el espacio entre las cartas */
+    }
+
+    .cursos-card {
+        flex: 0 0 calc(33.333% - 10px); /* Ajusta el ancho de las cartas */
+        height: 180px; /* Ajusta la altura de las cartas */
+    }
+
+    .cursos-card p {
+        font-size: small; /* Ajusta el tamaño de la fuente en las cartas */
+    }
+}
+
+/* Para pantallas mayores a 1024px (pantallas de escritorio y grandes) */
+@media (min-width: 1024px) {
+    .tituloasig {
+        font-size: 2em; /* Tamaño de fuente para pantallas grandes */
+        letter-spacing: 5%; /* Espaciado de las letras para pantallas grandes */
+    }
+
+    .cursos-container {
+        width: 80%; /* Ancho del contenedor para pantallas grandes */
+        height: 75vh; /* Ajusta la altura para permitir el scroll */
+        overflow-y: auto; /* Permite el scroll vertical */
+        overflow-x: hidden; /* Evita el scroll horizontal */
+    }
+
+    .card-container-cursos {
+        gap: 4%; /* Espacio entre las cartas */
+    }
+
+    .cursos-card {
+        flex: 0 0 calc(20% - 10px); /* Ancho de las cartas para pantallas grandes */
+        height: 200px; /* Altura fija para las cartas */
+    }
+
+    .cursos-card p {
+        font-size: medium; /* Tamaño de la fuente en las cartas */
+    }
+}
+
+
 
 .edit-form {
     display: none;
@@ -1716,3 +1928,210 @@ ul.materias li {
     width: fit-content; /* Ajusta el ancho del label al contenido */
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), -1px -1px 2px rgba(243, 72, 4, 0.5); /* Sombra del texto para efecto 3D */
 }
+
+
+.alumnos-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra los elementos internamente verticalmente */
+    align-items: center; /* Centra los elementos internamente horizontalmente */
+    border-radius: 6px;
+    max-width: 90%;
+    height: 75%;
+    width: 80%;
+    padding: 20px;
+    transition: max-width 0.5s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(253, 87, 46, 1), rgba(253, 87, 46, 0.767), rgba(253, 87, 46, 0));
+    /* Gradiente desde #fd572ea2 (opaco) hasta transparente */ /* Fondo con color sólido semi-transparente */
+    
+}
+
+
+.alumnos-table{
+    overflow: auto;
+    width: 90%;
+    height: 100%;
+    
+}
+.simplebar-track.simplebar-vertical {
+    opacity: 0;
+}
+
+
+
+.alumnos-table h4{
+    font-size: 1.5em;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 2%;
+    padding: 2%;
+    border-top: #b24226 3px solid;
+    
+}
+
+.alumnos-table table {
+    
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+
+
+.table th {
+    
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: large;
+    
+}
+
+.table td {
+    
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: medium;
+}
+
+.table input{
+    background: #b24226;
+    border: none;
+    outline: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    width: 20%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    font-size: medium;
+}
+
+.table input[type="number"]::-webkit-outer-spin-button,
+.table input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.botonotas {
+    margin-top: 5%;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+
+    display: flex;
+}
+
+.alumnos-table .botonguardar {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: white;
+    height: 10%;
+    scale: 1.5;
+    outline: none;
+    border: none;
+    transition: scale(0.3s) ease-in;
+    cursor: pointer;
+}
+
+.botonguardar:hover{
+    scale: 1.8;
+}
+
+ tr{
+    border-bottom: #b24226 3px solid;
+}
+
+@media (max-width: 1200px) {
+    .alumnos-table {
+        width: 95%;
+    }
+
+    .table input {
+        width: 25%;
+        font-size: small;
+    }
+
+    .botonguardar {
+        height: 15%;
+        scale: 1.3;
+    }
+}
+
+@media (max-width: 992px) {
+    .alumnos-table h4 {
+        font-size: 1.2em;
+    }
+
+    .table th {
+        font-size: medium;
+    }
+
+    .table td {
+        font-size: small;
+    }
+
+    .table input {
+        width: 30%;
+    }
+}
+
+@media (max-width: 768px) {
+    .alumnos-table h4 {
+        font-size: 1em;
+    }
+
+    .table th {
+        font-size: small;
+    }
+
+    .table td {
+        font-size: smaller;
+    }
+
+    .table input {
+        padding: 3%;
+        width: 45%;
+        height: 45%;
+        font-size: medium;
+    }
+
+    .botonguardar {
+        height: 20%;
+        scale: 1.2;
+    }
+}
+
+@media (max-width: 576px) {
+    .alumnos-table {
+        width: 100%;
+    }
+
+    .table input {
+        width: 50%;
+        height: 50%;
+        font-size: small;
+    }
+
+    .botonguardar {
+        height: 25%;
+        scale: 1;
+    }
+}
+
+
+
+
+
