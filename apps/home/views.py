@@ -18,7 +18,7 @@ from django.db.models import Avg
 def pages(request):
     context = {}
     load_template = request.path.split('/')[-1]
-    
+
     # Redirigir a la página de administración si la URL es 'admin'
     if load_template == 'admin':
         return HttpResponseRedirect(reverse('admin:index'))
@@ -26,6 +26,10 @@ def pages(request):
     # Si la URL corresponde a una vista específica, renderizar esa vista
     if load_template in ['seccion', 'notasal', 'testvocacional', 'cuestionario']:
         return globals()[load_template](request)
+
+    # Redirigir al perfil después de login
+    if load_template == '':
+        return HttpResponseRedirect(reverse('perfil'))
 
     # Si la URL no coincide con ninguna vista específica, cargar la plantilla HTML correspondiente
     try:
@@ -41,7 +45,6 @@ def pages(request):
     except Exception as e:
         html_template = loader.get_template('home/page-500.html')
         return HttpResponse(html_template.render(context, request))
-
 # paginas
 
 @login_required(login_url="/login/")
