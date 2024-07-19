@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
+<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Alumno, AñoCurso, Asignatura, Calificaciones, Profesor, Calificaciones
 from apps.home.models import Alumno, AñoCurso, Asignatura, Calificaciones, Profesor, Calificaciones
@@ -10,6 +11,18 @@ from django.shortcuts import redirect
 from django.core.exceptions import ValidationError
 from decimal import Decimal, InvalidOperation
 from django.db.models import Avg
+=======
+from django.shortcuts import render, redirect,get_object_or_404
+from .models import Alumno, AñoCurso
+from apps.home.models import Alumno, AñoCurso
+from django.http import JsonResponse
+from django.template import TemplateDoesNotExist
+import requests
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .models import Event
+from .forms import EventForm
+from django.views.decorators.csrf import csrf_exempt
+>>>>>>> 58d0b0a97cd6fba154d3c77d543d8d5ca6caea11
 
 
 
@@ -17,8 +30,13 @@ from django.db.models import Avg
 @login_required(login_url="/login/")
 def pages(request):
     context = {}
+<<<<<<< HEAD
     load_template = request.path.split('/')[-1]
     
+=======
+    load_template = request.path.split('index/')[-1]
+
+>>>>>>> 58d0b0a97cd6fba154d3c77d543d8d5ca6caea11
     # Redirigir a la página de administración si la URL es 'admin'
     if load_template == 'admin':
         return HttpResponseRedirect(reverse('admin:index'))
@@ -29,11 +47,11 @@ def pages(request):
 
     # Si la URL no coincide con ninguna vista específica, cargar la plantilla HTML correspondiente
     try:
-        html_template = loader.get_template('home/' + load_template)
+        html_template = loader.get_template('home/index' + load_template + '.html')
         return HttpResponse(html_template.render(context, request))
 
     # Manejar el caso en que no se encuentre la plantilla
-    except template.TemplateDoesNotExist:
+    except TemplateDoesNotExist:
         html_template = loader.get_template('home/page-404.html')
         return HttpResponse(html_template.render(context, request))
 
@@ -41,8 +59,6 @@ def pages(request):
     except Exception as e:
         html_template = loader.get_template('home/page-500.html')
         return HttpResponse(html_template.render(context, request))
-
-# paginas
 
 @login_required(login_url="/login/")
 def perfil(request):
@@ -492,6 +508,7 @@ def cuestionario(request):
     context = {'segment': 'cuestionario'}
     return render(request, 'home/cuestionario.html', context)
 
+<<<<<<< HEAD
 @login_required(login_url="/login/")
 def asignaturas(request, id_añocurso):
     profesor_logueado = request.user.profesor
@@ -508,3 +525,97 @@ def asignaturas(request, id_añocurso):
     }
     return render(request, 'home/asignaturas.html', context)
 
+=======
+
+@login_required(login_url="/login/")
+def index(request):
+    # Obtención de noticias
+    api_key = 'pub_48808b16ca195b4bdea2450851b8a1ff1d990'
+    base_url = 'https://newsdata.io/api/1/news'
+    query_params = {
+        'apikey': api_key,
+        'country': 'cl',
+        'q': 'chile',
+        'size': 10  # Ajusta este parámetro para cambiar la cantidad de noticias por página
+    }
+    
+    response = requests.get(base_url, params=query_params)
+    
+    if response.status_code == 200:
+        data = response.json().get('results', [])  # Obtén los resultados de la API
+    else:
+        data = []
+    
+    paginator = Paginator(data, 5)  # Divide los resultados en páginas, 5 resultados por página
+    page_number = request.GET.get('page')  # Obtén el número de página actual
+    
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)  # Si el número de página no es un entero, muestra la primera página
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)  # Si la página está vacía, muestra la última página
+
+    # Manejo del formulario de eventos
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES)
+        if form.is_valid():
+            event = form.save()
+            if request.is_ajax():
+                return JsonResponse({
+                    'id': event.id,
+                    'title': event.title,
+                    'description': event.description,
+                })
+            return redirect('index')  # Redirige a la misma página para actualizar la lista de eventos
+    else:
+        form = EventForm()
+    
+    events = Event.objects.all()
+
+    # Combina los datos de noticias y eventos en el contexto
+    context = {
+        'news': page_obj,  # Paginador de noticias
+        'events': events,  # Lista de eventos
+        'form': form,      # Formulario para agregar eventos
+    }
+    
+    return render(request, 'home/index.html', context)
+
+
+
+
+
+@login_required(login_url="/login/")
+def delete_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if request.method == 'POST':
+        event.delete()
+        return redirect('index')  # Redirige a la página principal después de eliminar
+    return redirect('index')
+
+
+@csrf_exempt
+@login_required(login_url="/login/")
+def update_event(request):
+    if request.method == 'POST':
+        event_id = request.POST.get('event_id')
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        try:
+            event = Event.objects.get(id=event_id)
+            event.title = title
+            event.description = description
+            event.save()
+
+            return JsonResponse({
+                'id': event.id,
+                'title': event.title,
+                'description': event.description
+            })
+        except Event.DoesNotExist:
+            return JsonResponse({'error': 'Event not found'}, status=404)
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+>>>>>>> 58d0b0a97cd6fba154d3c77d543d8d5ca6caea11

@@ -1686,6 +1686,7 @@ ul.materias li {
     
 }
 
+<<<<<<< HEAD
 .tituloasig{
     font-size: large;
     position: absolute;
@@ -1716,3 +1717,405 @@ ul.materias li {
     width: fit-content; /* Ajusta el ancho del label al contenido */
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), -1px -1px 2px rgba(243, 72, 4, 0.5); /* Sombra del texto para efecto 3D */
 }
+=======
+
+
+
+
+.index-page {
+    position: relative  ;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 99.7vw;
+    height: 120.7vh;
+    margin: 0 auto;
+    top: 0  ;
+    font-size: smaller;
+  
+
+}
+
+.index-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    border-radius: 6px;
+    max-width: 90%;
+    height: 85%;
+    margin-top: 3%;
+    width: 90%;
+    padding: 20px;
+    transition: max-width 0.5s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    z-index: 10;
+    
+    /* Gradiente desde #fd572ea2 (opaco) hasta transparente */ /* Fondo con color sólido semi-transparente */
+}
+
+.content1news{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 95%;
+    margin: 0.5%;
+}
+/*3920a0feebf0489dab34cf98346a7a1d*/
+
+.content1{
+   
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 95%;
+    margin: 0.5%;
+    
+}
+
+.derecha {
+    flex-basis: 20%; /* Tamaño inicial del contenedor derecho */
+    align-self: flex-start; /* Alineación hacia la parte superior (o puedes usar flex-end para alinearlo hacia abajo) */
+  }
+  
+  .izquierda {
+    flex-basis: 60%; /* Tamaño inicial del contenedor izquierdo */
+    align-self: flex-start; /* Alineación hacia la parte superior (o flex-end para alinearlo hacia abajo) */
+  }
+
+
+.news {
+    width: 90%;
+    height: 90%;
+    background: transparent;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+.news ul{
+    list-style-type: none;
+    padding-left: 0;
+    padding: 5%;
+    
+
+}
+
+
+.news h2 {
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.8);
+    background-position: center; 
+    font-size: 2em;
+    font-weight: 700;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-family: "Kanit", sans-serif;
+    font-style: normal;
+    letter-spacing: .1em;
+    padding: 10px; /* Aplica padding al interior del elemento h2 */
+}
+
+
+
+.news .description {
+    padding: 5%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* Ajusta según el diseño */
+}
+
+
+.news li{
+    background: #3d5a80;
+    margin: 0%;
+    margin-bottom: 10%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    box-shadow: 10px 10px 1px -1px rgba(20, 0, 20, 0.342);
+    
+}
+
+
+.news .simplebar-scrollbar{
+    visibility:hidden
+
+}
+
+.news a{
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+}
+
+.news img{
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    z-index: -1;
+    
+}
+
+.pagination{
+    position: relative;
+    color: white;
+    text-align: center;
+    bottom: 0;
+    margin-top: 10%;
+}
+
+
+
+
+#toggle-form-btn {
+    display: block;
+    margin: 5px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #EE6C4D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    outline: none;
+    border: none;
+    color: white;
+    font-weight: 600;
+}
+
+#event-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5%;
+    border-radius: 8px;
+    height: 50%;
+    background-color: #37557b;
+    box-shadow: 10px 10px 1px -1px rgba(20, 0, 20, 0.342);
+}
+
+
+
+#event-form label,
+#event-form input{
+    margin-bottom: 3%;
+    margin-top: 3%;
+    width: 96%;
+    padding: 2%;
+    outline: none;
+    border: none;
+    color: white;
+    
+    background-color: #20344e;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#event-form {
+    margin: 2%;
+    
+    
+}
+
+#event-form button{
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: #20344e;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    
+    color: white;
+    font-weight: 600;
+    margin-bottom: 5%;
+}
+
+
+#event-form textarea{
+    background-color: #20344e;
+    color: white;
+    margin-bottom: 5%;
+    width: 100%;
+    height: 30%;
+    resize: none;
+    padding: 5%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    outline: none;
+    border: none;
+    min-height: 0%; /* Altura mínima */
+    box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */
+}
+
+
+
+#event-list {
+    list-style-type: none;
+
+    position: relative;
+}
+
+#event-list li {
+    margin: 2%;
+    border-radius: 8px;
+    background-color: #ee6d4d;
+    box-shadow: 10px 10px 1px -1px rgba(20, 0, 20, 0.342);
+}
+
+#event-list h3 {
+    margin: 0;
+}
+
+#event-list p {
+    margin: 10px 0;
+}
+
+#event-list img {
+    margin: 10px 0;
+    max-width: 100%;
+    height: auto;
+}
+
+#event-list .edit-event-btn,
+#event-list .delete-event-btn {
+    margin: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+.event-item {
+    position: relative; /* Asegura que los botones puedan posicionarse dentro de este contenedor */
+    padding: 0; /* Espacio para los botones */
+    justify-content: center;
+    align-items: center;
+}
+
+.evnt-btn-container {
+    position: absolute; /* Posiciona los botones de forma absoluta */ /* Ajusta según sea necesario */
+    right: 0; /* Ajusta según sea necesario */
+    display: flex; /* Alinea los botones en una línea horizontal */
+    z-index: 1; /* Asegura que los botones queden encima del contenido */
+}
+
+.edit-event-btn,
+.delete-event-btn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px; /* Espacio entre botones */
+}
+
+.event-label {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+    background: #3d5a8000;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+     /* Espacio interno para evitar que el contenido toque los bordes */
+}
+
+.event-label h2{
+    margin-left: 5%;
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: 5px;
+}
+
+.event-label p{
+    margin-left: 5%;
+    text-align: center;
+    font-size: 1em;
+}
+
+
+
+.edit-event-btn:hover,
+.delete-event-btn:hover{
+    scale: 1.1;
+}
+
+
+/* Estilos del modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijo al viewport */
+    z-index: 100; /* Por encima del contenido */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    overflow: auto; /* Habilita el scroll si es necesario */
+    background-color: rgb(0,0,0); /* Color de fondo negro */
+    background-color: rgba(0,0,0,0.4); /* Fondo con opacidad */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centrando el modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del modal */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+#editor{
+    border:#03dac5
+}
+
+
+
+
+
+
+
+
+
+>>>>>>> 58d0b0a97cd6fba154d3c77d543d8d5ca6caea11

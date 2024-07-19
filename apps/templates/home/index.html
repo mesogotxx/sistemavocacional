@@ -1,12 +1,377 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Dashboard {% endblock %} 
+{% block title %} Dashboard {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-<p> Hola</p>
+<div class="index-page">
+    <div class="index-container">
+
+        <div class="content1 izquierda">
+            <div class="event-container" >
+                <div class="event-label" >
+                    <div class="events-activities">
+                        
+                        <button id="toggle-form-btn">Agregar Evento</button>
+                    
+                        <div id="event-form-container" data-simplebar style="display: none;">
+                            <form id="event-form" method="POST" enctype="multipart/form-data" action="{% url 'index' %}">
+                                {% csrf_token %}
+                                <label for="event-title">Escribe el titulo de tu anuncio:</label>
+                                <input type="text" id="event-title" name="title" required>
+                    
+                                <label for="event-description">Descripción:</label>
+                                <textarea id="editor" name="description"></textarea>
+                    
+                                <button class="botonSubmit" type="submit"><span class="material-symbols-outlined">
+                                    save
+                                    </span></button>
+                            </form>
+                        </div>
+                    
+                        <ul id="event-list">
+                            {% for event in events %}
+                            <li class="event-item" data-event-id="{{ event.id }}">
+                                <div class="evnt-btn-container">
+                                    <button class="edit-event-btn" data-event-id="{{ event.id }}">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </button>
+                                    
+                                    <button class="delete-event-btn" data-event-id="{{ event.id }}">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </button>
+                                </div>
+                                <div class="event-label">
+                                    <h2>{{ event.title }}</h2>
+                                    <p>{{ event.description }}</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content1news derecha">
+            <div class="news" data-simplebar>
+                <ul>
+                    {% if news %}
+                    {% for article in news %}
+                    <li>
+                        <a href="{{ article.link }}" target="_blank">
+                            <h2 style="background-image: url('{{ article.image_url }}');">{{ article.title }}</h2>
+                            <p class="description">{{ article.description|truncatechars:150 }}</p>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    {% else %}
+                    <li>No news articles found.</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if news.has_previous %}
+                    <a href="?page=1">&laquo; Primera</a>
+                    <a href="?page={{ news.previous_page_number }}">
+                        << /a>
+                            {% endif %}
+
+                            <span class="current">
+                                {{ news.number }} de {{ news.paginator.num_pages }}.
+                            </span>
+
+                            {% if news.has_next %}
+                            <a href="?page={{ news.next_page_number }}">></a>
+                            {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="editEventModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="edit-event-form" method="POST" action="{% url 'update_event' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" id="edit-event-id" name="event_id">
+            <label for="edit-event-title">Título:</label>
+            <input type="text" id="edit-event-title" name="title" required>
+            <label for="edit-event-description">Descripción:</label>
+            <textarea id="edit-event-description" name="description" required></textarea> <!-- ID corregido aquí -->
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+
+<div id="confirmDeleteModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-confirm">&times;</span>
+        <p>¿Estás seguro de que deseas eliminar este evento?</p>
+        <button id="confirm-delete-btn">Sí, eliminar</button>
+        <button id="cancel-delete-btn">Cancelar</button>
+    </div>
+</div>
+
+
+<script> <!--BOTON AGREGAR-->
+    document.addEventListener('DOMContentLoaded', function() {
+        // Toggle form visibility
+        document.getElementById('toggle-form-btn').addEventListener('click', function() {
+            var formContainer = document.getElementById('event-form-container');
+            if (formContainer.style.display === 'none') {
+                formContainer.style.display = 'block';
+                this.textContent = 'Cancelar';
+            } else {
+                formContainer.style.display = 'none';
+                this.textContent = 'Agregar Evento';
+            }
+        });
+
+        // Handle form submission with AJAX
+        document.getElementById('event-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            var formData = new FormData(this);
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest' // Indicates AJAX request
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response data here
+                var eventList = document.getElementById('event-list');
+                var newEventItem = document.createElement('li');
+                newEventItem.classList.add('event-item');
+                newEventItem.setAttribute('data-event-id', data.id);
+                newEventItem.innerHTML = `
+                    <div class="evnt-btn-container">
+                        <button class="edit-event-btn" data-event-id="${data.id}">
+                            <span class="material-symbols-outlined">edit</span>
+                        </button>
+                        <button class="delete-event-btn" data-event-id="${data.id}">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </div>
+                    <div class="event-label">
+                        <h2>${data.title}</h2>
+                        <p>${data.description}</p>
+                    </div>
+                `;
+                eventList.appendChild(newEventItem);
+
+                // Hide the form and reset its fields
+                document.getElementById('event-form-container').style.display = 'none';
+                document.getElementById('toggle-form-btn').textContent = 'Agregar Evento';
+                document.getElementById('event-form').reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        // Handle the modal and delete event
+        var confirmDeleteModal = document.getElementById('confirmDeleteModal');
+        var closeConfirm = document.getElementsByClassName('close-confirm')[0];
+        var confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+        var cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+        var eventIdToDelete = null;
+
+        function openConfirmModal(eventId) {
+            eventIdToDelete = eventId;
+            confirmDeleteModal.style.display = 'block';
+        }
+
+        closeConfirm.onclick = function() {
+            confirmDeleteModal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == confirmDeleteModal) {
+                confirmDeleteModal.style.display = 'none';
+            }
+        }
+
+        confirmDeleteBtn.onclick = function() {
+            if (eventIdToDelete) {
+                fetch(`/event/delete/${eventIdToDelete}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: new URLSearchParams({
+                        'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Remove the event item from the DOM
+                        const eventItem = document.querySelector(`.event-item[data-event-id="${eventIdToDelete}"]`);
+                        if (eventItem) {
+                            eventItem.remove();
+                        }
+                    } else {
+                        alert('No se pudo eliminar el evento.');
+                    }
+                    confirmDeleteModal.style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Ocurrió un error al intentar eliminar el evento.');
+                    confirmDeleteModal.style.display = 'none';
+                });
+            }
+        }
+
+        cancelDeleteBtn.onclick = function() {
+            confirmDeleteModal.style.display = 'none';
+        }
+
+        document.querySelectorAll('.delete-event-btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action
+                const eventId = this.getAttribute('data-event-id');
+                openConfirmModal(eventId);
+            });
+        });
+    });
+</script>
+<script><!--BOTON BORRAR-->
+    document.addEventListener('DOMContentLoaded', function() {
+        var confirmDeleteModal = document.getElementById('confirmDeleteModal');
+        var closeConfirm = document.getElementsByClassName('close-confirm')[0];
+        var confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+        var cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+        var eventIdToDelete = null;
+    
+        function openConfirmModal(eventId) {
+            eventIdToDelete = eventId;
+            confirmDeleteModal.style.display = 'block';
+        }
+    
+        closeConfirm.onclick = function() {
+            confirmDeleteModal.style.display = 'none';
+        }
+    
+        window.onclick = function(event) {
+            if (event.target == confirmDeleteModal) {
+                confirmDeleteModal.style.display = 'none';
+            }
+        }
+    
+        confirmDeleteBtn.onclick = function() {
+            if (eventIdToDelete) {
+                fetch(`/event/delete/${eventIdToDelete}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: new URLSearchParams({
+                        'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Eliminar el evento del DOM
+                        const eventItem = document.querySelector(`.event-item[data-event-id="${eventIdToDelete}"]`);
+                        if (eventItem) {
+                            eventItem.remove();
+                        }
+                    } else {
+                        alert('No se pudo eliminar el evento.');
+                    }
+                    confirmDeleteModal.style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Ocurrió un error al intentar eliminar el evento.');
+                    confirmDeleteModal.style.display = 'none';
+                });
+            }
+        }
+    
+        cancelDeleteBtn.onclick = function() {
+            confirmDeleteModal.style.display = 'none';
+        }
+    
+        document.querySelectorAll('.delete-event-btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevenir la navegación
+                const eventId = this.getAttribute('data-event-id');
+                openConfirmModal(eventId);
+            });
+        });
+    });
+    </script>
+<script><!--FORMULARIO FUNCIONAMIENTO AJAX LOCAL STORAGE-->
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleFormBtn = document.getElementById('toggle-form-btn');
+      const formContainer = document.getElementById('event-form-container');
+      const dateInput = document.getElementById('event-date');
+      const saveEventBtn = document.getElementById('save-event-btn');
+      const form = document.getElementById('event-form');
+
+      // Establecer la fecha actual en el campo de fecha
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.value = today;
+
+      // Mostrar/ocultar formulario
+      toggleFormBtn.addEventListener('click', function() {
+        if (formContainer.style.display === 'none' || formContainer.style.display === '') {
+          formContainer.style.display = 'block';
+          toggleFormBtn.textContent = 'Ocultar Formulario';
+        } else {
+          formContainer.style.display = 'none';
+          toggleFormBtn.textContent = 'Agregar Evento';
+        }
+      });
+
+      // Guardar en localStorage al hacer clic en el botón de guardar
+      saveEventBtn.addEventListener('click', function() {
+        const formData = {
+          title: form.querySelector('#event-title').value,
+          description: form.querySelector('#editor').value,
+          image: form.querySelector('#event-image').files[0] ? form.querySelector('#event-image').files[0].name : '',  // Solo guardamos el nombre del archivo
+          date: form.querySelector('#event-date').value,
+        };
+
+        localStorage.setItem('eventFormData', JSON.stringify(formData));
+
+        // Opcionalmente, puedes mostrar un mensaje de éxito o limpiar el formulario
+        alert('Evento guardado en el almacenamiento local');
+        form.reset();
+      });
+
+      // Cargar los datos del formulario desde localStorage si están presentes
+      const savedFormData = JSON.parse(localStorage.getItem('eventFormData'));
+
+      if (savedFormData) {
+        form.querySelector('#event-title').value = savedFormData.title || '';
+        form.querySelector('#editor').value = savedFormData.description || '';
+        form.querySelector('#event-image').value = savedFormData.image || '';  // La carga de archivos es limitada con localStorage
+        form.querySelector('#event-date').value = savedFormData.date || '';
+      }
+    });
+  </script>
+
+
+
+
+
+    
+
 
 {% endblock content %}
 
