@@ -3,15 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-<<<<<<< HEAD
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Alumno, AñoCurso, Asignatura, Calificaciones, Profesor, Calificaciones
-from apps.home.models import Alumno, AñoCurso, Asignatura, Calificaciones, Profesor, Calificaciones
-from django.shortcuts import redirect
-from django.core.exceptions import ValidationError
-from decimal import Decimal, InvalidOperation
-from django.db.models import Avg
-=======
 from django.shortcuts import render, redirect,get_object_or_404
 from .models import Alumno, AñoCurso
 from apps.home.models import Alumno, AñoCurso
@@ -22,7 +13,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Event
 from .forms import EventForm
 from django.views.decorators.csrf import csrf_exempt
->>>>>>> 58d0b0a97cd6fba154d3c77d543d8d5ca6caea11
 
 
 
@@ -30,13 +20,8 @@ from django.views.decorators.csrf import csrf_exempt
 @login_required(login_url="/login/")
 def pages(request):
     context = {}
-<<<<<<< HEAD
-    load_template = request.path.split('/')[-1]
-    
-=======
     load_template = request.path.split('index/')[-1]
 
->>>>>>> 58d0b0a97cd6fba154d3c77d543d8d5ca6caea11
     # Redirigir a la página de administración si la URL es 'admin'
     if load_template == 'admin':
         return HttpResponseRedirect(reverse('admin:index'))
@@ -508,24 +493,6 @@ def cuestionario(request):
     context = {'segment': 'cuestionario'}
     return render(request, 'home/cuestionario.html', context)
 
-<<<<<<< HEAD
-@login_required(login_url="/login/")
-def asignaturas(request, id_añocurso):
-    profesor_logueado = request.user.profesor
-    
-    # Obtener el objeto AñoCurso basado en el id proporcionado
-    año_curso = AñoCurso.objects.get(id_añocurso=id_añocurso)
-    
-    # Filtra las asignaturas por el profesor logueado y el curso especificado
-    asignaturas = Asignatura.objects.filter(profesor=profesor_logueado, curso_id=id_añocurso)
-    
-    context = {
-        'asignaturas': asignaturas,
-        'año_curso': año_curso
-    }
-    return render(request, 'home/asignaturas.html', context)
-
-=======
 
 @login_required(login_url="/login/")
 def index(request):
@@ -618,4 +585,3 @@ def update_event(request):
             return JsonResponse({'error': 'Event not found'}, status=404)
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
->>>>>>> 58d0b0a97cd6fba154d3c77d543d8d5ca6caea11

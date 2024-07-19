@@ -8,29 +8,21 @@
 {% block content %}
 <div class="index-page">
     <div class="index-container">
-
         <div class="content1 izquierda">
-            <div class="event-container" >
-                <div class="event-label" >
+            <div class="event-container">
+                <div class="event-label">
                     <div class="events-activities">
-                        
                         <button id="toggle-form-btn">Agregar Evento</button>
-                    
                         <div id="event-form-container" data-simplebar style="display: none;">
                             <form id="event-form" method="POST" enctype="multipart/form-data" action="{% url 'index' %}">
                                 {% csrf_token %}
-                                <label for="event-title">Escribe el titulo de tu anuncio:</label>
+                                <label for="event-title">Escribe el título de tu anuncio:</label>
                                 <input type="text" id="event-title" name="title" required>
-                    
                                 <label for="event-description">Descripción:</label>
                                 <textarea id="editor" name="description"></textarea>
-                    
-                                <button class="botonSubmit" type="submit"><span class="material-symbols-outlined">
-                                    save
-                                    </span></button>
+                                <button class="botonSubmit" type="submit"><span class="material-symbols-outlined">save</span></button>
                             </form>
                         </div>
-                    
                         <ul id="event-list">
                             {% for event in events %}
                             <li class="event-item" data-event-id="{{ event.id }}">
@@ -38,7 +30,6 @@
                                     <button class="edit-event-btn" data-event-id="{{ event.id }}">
                                         <span class="material-symbols-outlined">edit</span>
                                     </button>
-                                    
                                     <button class="delete-event-btn" data-event-id="{{ event.id }}">
                                         <span class="material-symbols-outlined">delete</span>
                                     </button>
@@ -54,47 +45,25 @@
                 </div>
             </div>
         </div>
-        <div class="content1news derecha">
-            <div class="news" data-simplebar>
-                <ul>
-                    {% if news %}
-                    {% for article in news %}
-                    <li>
-                        <a href="{{ article.link }}" target="_blank">
-                            <h2 style="background-image: url('{{ article.image_url }}');">{{ article.title }}</h2>
-                            <p class="description">{{ article.description|truncatechars:150 }}</p>
-                        </a>
-                    </li>
-                    {% endfor %}
-                    {% else %}
-                    <li>No news articles found.</li>
-                    {% endif %}
-                </ul>
-            </div>
-
-            <div class="pagination">
-                <span class="step-links">
-                    {% if news.has_previous %}
-                    <a href="?page=1">&laquo; Primera</a>
-                    <a href="?page={{ news.previous_page_number }}">
-                        << /a>
-                            {% endif %}
-
-                            <span class="current">
-                                {{ news.number }} de {{ news.paginator.num_pages }}.
-                            </span>
-
-                            {% if news.has_next %}
-                            <a href="?page={{ news.next_page_number }}">></a>
-                            {% endif %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if events.has_previous %}
+                <a href="?page=1">&laquo; Primera</a>
+                <a href="?page={{ events.previous_page_number }}">Anterior</a>
+                {% endif %}
+                <span class="current">
+                    Página {{ events.number }} de {{ events.paginator.num_pages }}.
                 </span>
-            </div>
+                {% if events.has_next %}
+                <a href="?page={{ events.next_page_number }}">Siguiente</a>
+                <a href="?page={{ events.paginator.num_pages }}">Última &raquo;</a>
+                {% endif %}
+            </span>
         </div>
     </div>
 </div>
 
-
-<!-- Modal -->
+<!-- Modal para editar eventos -->
 <div id="editEventModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -104,12 +73,13 @@
             <label for="edit-event-title">Título:</label>
             <input type="text" id="edit-event-title" name="title" required>
             <label for="edit-event-description">Descripción:</label>
-            <textarea id="edit-event-description" name="description" required></textarea> <!-- ID corregido aquí -->
+            <textarea id="edit-event-description" name="description" required></textarea>
             <button type="submit">Guardar Cambios</button>
         </form>
     </div>
 </div>
 
+<!-- Modal para confirmar eliminación -->
 <div id="confirmDeleteModal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close-confirm">&times;</span>
