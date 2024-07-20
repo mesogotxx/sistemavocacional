@@ -1,43 +1,29 @@
-<div id="navbarNav" style="display: flex; justify-content: flex-end;">
-    {% if request.user.is_authenticated %}
-    <form>
-        <div class="searchflex">
-            <input class="searchbar" type="text" placeholder="Buscar...">
-            <button class="searchbutton" type="submit">
-                <i class="material-icons">search</i>
-            </button>
-        </div>
-    </form>
-    <div class="navlistbar" style="display: flex;">
-        <ul>
+<div>
+    <div>
+        <div class="navigation" id="navbarNav">
+            {% if request.user.is_authenticated %}
             
-            <li>
-                <a href="#pablo">
-                    <i class="material-icons">dashboard</i>
-                </a>
-            </li>
-            <li>
-                <a href="#" id="profileDropdown">
-                    <i class="material-icons">person</i>
-                </a>
-                <div aria-labelledby="profileDropdown">
-                    <a href="/perfil.html">Perfil</a>
+            <div class="navlistbar">
+                <ul>
                     
-                    <a href="{% url 'logout' %}">Salir</a>
-                </div>
-            </li>
-            <li>
-                <a href="#" id="notificationsDropdown">
-                    <i class="material-icons">notifications</i>
-                    <span>2</span>
-                </a>
-                <div aria-labelledby="notificationsDropdown">
-                    <a href="#">Tienes tus notas listas</a>
-                    <a href="#">Puedes realizar tu test Vocacional</a>
-                </div>
-            </li>
-        </ul>
+                    <li>
+                        <a href="{% url 'admin:index' %}">
+                            <i class="material-icons">dashboard</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'perfil' %}">
+                            <i class="material-icons">person</i>
+                        </a>
+
+                       
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            {% endif %}
+        </div>
+
     </div>
-    
-    {% endif %}
 </div>

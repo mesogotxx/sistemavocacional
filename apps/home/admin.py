@@ -33,8 +33,6 @@ class AlumnoAdmin(admin.ModelAdmin):
         return f"{obj.p_nombre} {obj.apellido_pat} {obj.apellido_mat}"
     nombre_completo.short_description = 'Nombre completo'
 
-admin.site.register(AñoCurso)
 admin.site.register(Asignatura)
-admin.site.register(Prediccion)
 admin.site.register(Calificaciones)
 
