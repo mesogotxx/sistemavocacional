@@ -81,7 +81,11 @@ document.addEventListener("DOMContentLoaded", function() {
             content.offsetHeight;
             
             content.style.opacity = '1';
+<<<<<<< HEAD
         }, 500); // Duración de la transición en milisegundos
+=======
+        }, 1000); // Duración de la transición en milisegundos
+>>>>>>> 26a72a72c04c65fbf7b57ee6d0dc26d3d08ea9e1
     }, 1000); // Simulación de 3 segundos de carga
 });
 
