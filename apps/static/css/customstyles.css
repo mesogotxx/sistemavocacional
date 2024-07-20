@@ -2226,3 +2226,18 @@ ul.materias li {
     right: 10px; /* A 10px de la derecha */
     z-index: 1000; /* Asegura que el botón esté encima de otros elementos */
   }
+
+  .table1-wrapper {
+    max-height: 400px; /* Ajusta el alto máximo según sea necesario */
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+}
+
+.table1 {
+    width: 100%;
+    border-collapse: collapse; /* Opcional, para bordes colapsados */
+}
+
+.table1 th, .table1 td {
+    text-align: left;
+    padding: 8px;
+}

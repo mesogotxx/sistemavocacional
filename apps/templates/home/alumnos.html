@@ -6,40 +6,41 @@
 <div class="alumnos-page">
     <div class="notas-container">
         <h1 class="tituloasig">Alumnos en la asignatura {{ asignatura.nombre_asig }}</h1>
-        <h4 class="">Lista de Alumnos</h4>
         {% if alumnos %}
             <form method="post" action="{% url 'guardar_calificaciones' %}">
                 {% csrf_token %}
                 <input type="hidden" name="asignatura_id" value="{{ asignatura.id_asignatura }}">
-                <table class="table">
-                    <thead class="text-primary">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Eva 1</th>
-                            <th>Eva 2</th>
-                            <th>Eva 3</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for alumno in alumnos %}
-                        <tr>
-                            <td>{{ alumno.id_alumno }}</td>
-                            <td>{{ alumno.apellido_pat|capfirst }} {{ alumno.apellido_mat|capfirst }} {{ alumno.p_nombre|capfirst }} {% if alumno.s_nombre %}{{ alumno.s_nombre|capfirst }}{% endif %}</td>
-                            {% with calificaciones_dict|dict_key:alumno.id_alumno as calificacion %}
-                                <td><input type="number" step="0.01" name="eva1_{{ alumno.id_alumno }}" value="{{ calificacion.eva1|stringformat:"g" }}" {% if calificacion.eva1 %}readonly{% endif %} class="eva1-input"></td>
-                                <td><input type="number" step="0.01" name="eva2_{{ alumno.id_alumno }}" value="{{ calificacion.eva2|stringformat:"g" }}" {% if calificacion.eva2 %}readonly{% endif %} class="eva2-input"></td>
-                                <td><input type="number" step="0.01" name="eva3_{{ alumno.id_alumno }}" value="{{ calificacion.eva3|stringformat:"g" }}" {% if calificacion.eva3 %}readonly{% endif %} class="eva3-input"></td>
-                            {% endwith %}
-                            <td>
-                                <button type="button" class="btn btn-secondary btn-sm edit-button" data-id="{{ alumno.id_alumno }}">Editar</button>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <button type="submit" class="btn btn-primary">Guardar Calificaciones</button>
+                <div class="table1-wrapper table1-wrapper">
+                    <table class="table1 table">
+                        <thead class="text-primary">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Eva 1</th>
+                                <th>Eva 2</th>
+                                <th>Eva 3</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for alumno in alumnos %}
+                            <tr>
+                                <td>{{ alumno.id_alumno }}</td>
+                                <td>{{ alumno.apellido_pat|capfirst }} {{ alumno.apellido_mat|capfirst }} {{ alumno.p_nombre|capfirst }} {% if alumno.s_nombre %}{{ alumno.s_nombre|capfirst }}{% endif %}</td>
+                                {% with calificaciones_dict|dict_key:alumno.id_alumno as calificacion %}
+                                    <td><input type="number" step="0.01" name="eva1_{{ alumno.id_alumno }}" value="{{ calificacion.eva1|stringformat:"g" }}" {% if calificacion.eva1 %}readonly{% endif %} class="eva1-input"></td>
+                                    <td><input type="number" step="0.01" name="eva2_{{ alumno.id_alumno }}" value="{{ calificacion.eva2|stringformat:"g" }}" {% if calificacion.eva2 %}readonly{% endif %} class="eva2-input"></td>
+                                    <td><input type="number" step="0.01" name="eva3_{{ alumno.id_alumno }}" value="{{ calificacion.eva3|stringformat:"g" }}" {% if calificacion.eva3 %}readonly{% endif %} class="eva3-input"></td>
+                                {% endwith %}
+                                <td>
+                                    <button type="button" class="btn-start" data-id="{{ alumno.id_alumno }}">Editar</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <button type="submit" class="btn-start">Guardar Calificaciones</button>
             </form>
         {% else %}
             <p>No hay alumnos para esta asignatura.</p>
