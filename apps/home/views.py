@@ -265,20 +265,32 @@ def calcular_promedios_areas():
 
 @login_required(login_url="/login/")
 def notasal(request):
+    # Obtener el alumno autenticado
     alumno = get_object_or_404(Alumno, user=request.user)
+    
+    # Obtener el curso del alumno
+    curso = alumno.año_cursado
+    
+    # Obtener todas las asignaturas del curso del alumno
+    asignaturas = Asignatura.objects.filter(curso=curso)
     
     # Obtener todas las calificaciones del alumno
     calificaciones = Calificaciones.objects.filter(alumno=alumno)
     
     # Generar datos de materias para el contexto
     datos_materias = []
-    for calificacion in calificaciones:
+    for asignatura in asignaturas:
+        calificacion = calificaciones.filter(asignatura=asignatura).first()
         datos_materias.append({
-            'materia': calificacion.asignatura.nombre_asig,
-            'notas': [calificacion.eva1, calificacion.eva2, calificacion.eva3]
+            'materia': asignatura.nombre_asig,
+            'notas': [
+                calificacion.eva1 if calificacion else None,
+                calificacion.eva2 if calificacion else None,
+                calificacion.eva3 if calificacion else None,
+            ]
         })
     
-    # Calcular promedios y otros datos si es necesario
+    # Calcular promedios por áreas de estudio
     promedios_areas = calcular_promedios_areas()
 
     context = {
