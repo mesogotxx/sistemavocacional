@@ -13,7 +13,6 @@ from django.db.models import Avg
 
 
 
-
 @login_required(login_url="/login/")
 def pages(request):
     context = {}
@@ -103,6 +102,7 @@ def alumnos(request, asignatura_id):
         'calificaciones_dict': calificaciones_dict,
     }
     return render(request, 'home/alumnos.html', context)
+
 
 @login_required(login_url="/login/")
 def guardar_calificaciones(request):
@@ -556,7 +556,6 @@ def testvocacional(request):
     html_template = loader.get_template('home/testvocacional.html')
     return HttpResponse(html_template.render(context, request))
 
-@login_required(login_url="/login/")
 def cuestionario(request):
     context = {'segment': 'cuestionario'}
     return render(request, 'home/cuestionario.html', context)
