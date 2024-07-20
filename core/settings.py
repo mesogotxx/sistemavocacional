@@ -103,7 +103,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ultima2',
         'USER': 'root',
-        'PASSWORD': 'lilo1309',
+        'PASSWORD': 'jon2328m',
         'PORT':3306,
         'HOST':'127.0.0.1',
     }
